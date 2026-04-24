@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Net.Http.Json;
 using WinPaperWalls.Interop;
+using WinPaperWalls.Models;
+using WinPaperWalls.Serialization;
 using WinPaperWalls.Services;
 
 namespace WinPaperWalls;
@@ -157,7 +159,7 @@ public sealed partial class MainWindow : Window
 		var response = await httpClient.GetAsync("https://api.github.com/repos/burkeholland/paper/contents/wallpapers");
 		response.EnsureSuccessStatusCode();
 
-		var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>();
+		var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem);
 		return items?
 			.Where(i => i.Type == "dir")
 			.Select(i => i.Name)
@@ -331,12 +333,6 @@ public sealed partial class MainWindow : Window
 		// Hide the window (minimize to tray)
 		var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
 		PInvoke.User32.ShowWindow(hwnd, PInvoke.User32.WindowShowStyle.SW_HIDE);
-	}
-
-	private class GitHubContentItem
-	{
-		public string Name { get; set; } = string.Empty;
-		public string Type { get; set; } = string.Empty;
 	}
 }
 

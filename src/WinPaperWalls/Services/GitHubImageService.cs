@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
-using System.Text.Json.Serialization;
 using WinPaperWalls.Models;
+using WinPaperWalls.Serialization;
 
 namespace WinPaperWalls.Services;
 
@@ -52,7 +52,7 @@ internal sealed class GitHubImageService : IGitHubImageService
 
 			response.EnsureSuccessStatusCode();
 
-			var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>().ConfigureAwait(false);
+			var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem).ConfigureAwait(false);
 			if (items == null)
 			{
 				_logger.LogWarning("GitHub API returned null response");
@@ -119,7 +119,7 @@ internal sealed class GitHubImageService : IGitHubImageService
 
 			response.EnsureSuccessStatusCode();
 
-			var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>().ConfigureAwait(false);
+			var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem).ConfigureAwait(false);
 			if (items == null)
 			{
 				_logger.LogWarning("GitHub API returned null response for topic {Topic}", topic);
@@ -194,20 +194,5 @@ internal sealed class GitHubImageService : IGitHubImageService
 	{
 		var extension = Path.GetExtension(fileName).ToLowerInvariant();
 		return extension is ".jpg" or ".jpeg" or ".png" or ".bmp" or ".webp";
-	}
-
-	private class GitHubContentItem
-	{
-		[JsonPropertyName("name")]
-		public string Name { get; set; } = string.Empty;
-
-		[JsonPropertyName("type")]
-		public string Type { get; set; } = string.Empty;
-
-		[JsonPropertyName("path")]
-		public string Path { get; set; } = string.Empty;
-
-		[JsonPropertyName("download_url")]
-		public string? DownloadUrl { get; set; }
 	}
 }

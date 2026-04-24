@@ -1,5 +1,6 @@
 using System.Text.Json;
 using WinPaperWalls.Models;
+using WinPaperWalls.Serialization;
 
 namespace WinPaperWalls.Services;
 
@@ -34,7 +35,7 @@ internal sealed class SettingsService : ISettingsService
 			try
 			{
 				var json = File.ReadAllText(_settingsPath);
-				return JsonSerializer.Deserialize<AppSettings>(json) ?? new AppSettings();
+				return JsonSerializer.Deserialize(json, AppJsonContext.Default.AppSettings) ?? new AppSettings();
 			}
 			catch
 			{
@@ -55,10 +56,7 @@ internal sealed class SettingsService : ISettingsService
 
 	private void SaveSettingsInternal(AppSettings settings)
 	{
-		var json = JsonSerializer.Serialize(settings, new JsonSerializerOptions
-		{
-			WriteIndented = true
-		});
+		var json = JsonSerializer.Serialize(settings, AppJsonContext.Default.AppSettings);
 		File.WriteAllText(_settingsPath, json);
 	}
 }

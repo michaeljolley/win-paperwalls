@@ -31,7 +31,7 @@ jobs:
               '',
               'Then, just right-click on the PowerToys system tray icon and go to Report Bug. Then drag the zip file from your desktop onto the GitHub comment box in this issue.',
               '',
-              '![Report Bug](https://user-images.githubusercontent.com/11349917/133042052-4975be21-4699-4363-83c9-a8e1869d079d.png)',
+              '![Report Bug](https://github.com/user-attachments/assets/40a5f5ae-53b4-412e-97e8-a83966f84a96)',
               '',
               'This will let me review the logs of the extension to see what error is occurring so we can get it working for you. 👍🏼',
             ].join('\n');

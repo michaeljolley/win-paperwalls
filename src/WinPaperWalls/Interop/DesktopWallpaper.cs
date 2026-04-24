@@ -13,10 +13,10 @@ public enum WallpaperStyle
 	Span
 }
 
-public static class DesktopWallpaper
+public static partial class DesktopWallpaper
 {
-	[DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-	private static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+	[LibraryImport("user32.dll", StringMarshalling = StringMarshalling.Utf16, SetLastError = true)]
+	private static partial int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
 
 	private const int SPI_SETDESKWALLPAPER = 0x0014;
 	private const int SPIF_UPDATEINIFILE = 0x01;

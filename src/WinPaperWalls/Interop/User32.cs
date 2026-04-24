@@ -6,8 +6,9 @@ internal static partial class PInvoke
 {
 	internal static partial class User32
 	{
-		[DllImport("user32.dll")]
-		internal static extern bool ShowWindow(IntPtr hWnd, WindowShowStyle nCmdShow);
+		[LibraryImport("user32.dll")]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		internal static partial bool ShowWindow(IntPtr hWnd, WindowShowStyle nCmdShow);
 
 		internal enum WindowShowStyle
 		{

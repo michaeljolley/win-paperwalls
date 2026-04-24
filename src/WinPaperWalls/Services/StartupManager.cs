@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
-using System.Reflection;
 
 namespace WinPaperWalls.Services;
 
@@ -68,17 +67,16 @@ internal sealed class StartupManager
 
 	private static string GetExecutablePath()
 	{
-		// Get the path to the currently executing assembly
-		var assembly = Assembly.GetExecutingAssembly();
-		var location = assembly.Location;
-
-		// For .NET applications, we need the actual .exe path
-		// Location might be .dll, so we look for the .exe
-		if (location.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
+		// Use Environment.ProcessPath for AOT/single-file compatibility
+		var exePath = Environment.ProcessPath;
+		if (!string.IsNullOrEmpty(exePath))
 		{
-			location = location.Substring(0, location.Length - 4) + ".exe";
+			return exePath;
 		}
 
-		return location;
+		// Fallback: derive from base directory
+		var baseDir = AppContext.BaseDirectory;
+		var exeName = AppDomain.CurrentDomain.FriendlyName + ".exe";
+		return Path.Combine(baseDir, exeName);
 	}
 }
