@@ -16,11 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      
-      - name: Setup .NET 9 SDK
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: '9.0.x'
 
       - name: Setup .NET 10 SDK
         uses: actions/setup-dotnet@v5
@@ -89,11 +84,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-      
-      - name: Setup .NET 9 SDK
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: '9.0.x'
 
       - name: Setup .NET 10 SDK
         uses: actions/setup-dotnet@v5
