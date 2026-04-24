@@ -98,7 +98,11 @@
 - Missing topics/images logged but don't crash
 - Download failures trigger retry with different image
 
-**Next Steps:**
-- Phase 3: Scheduler service for automatic wallpaper rotation based on `IntervalMinutes`
-- Phase 4: UI enhancements in MainWindow for manual controls and cache management
+### 2026-04-24: Cross-Agent Integration with Marty (Phase 3)
 
+Marty (Phase 3) built the tray icon component (H.NotifyIcon.WinUI) and app startup integration. The tray menu calls `IWallpaperService.ChangeWallpaperAsync()` to change wallpapers on demand, fully utilizing Biff's Phase 2 services:
+- GitHubImageService for topic/image discovery
+- CacheService for image caching and LRU eviction
+- WallpaperService for orchestration and retry logic
+
+No API changes required. Marty's TrayIconView component cleanly integrates all Phase 2 interfaces without modification.
