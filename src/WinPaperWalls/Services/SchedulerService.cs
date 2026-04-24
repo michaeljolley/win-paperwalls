@@ -33,7 +33,7 @@ public class SchedulerService : ISchedulerService, IHostedService
         _logger.LogInformation("Scheduler service starting");
 
         var settings = _settingsService.LoadSettings();
-        var intervalMinutes = settings.IntervalMinutes;
+        var intervalMinutes = Math.Max(1, settings.IntervalMinutes);
 
         lock (_timerLock)
         {
@@ -128,7 +128,7 @@ public class SchedulerService : ISchedulerService, IHostedService
         try
         {
             var settings = _settingsService.LoadSettings();
-            var newIntervalMinutes = settings.IntervalMinutes;
+            var newIntervalMinutes = Math.Max(1, settings.IntervalMinutes);
 
             _logger.LogInformation("Settings changed - restarting timer with interval of {IntervalMinutes} minutes", newIntervalMinutes);
 

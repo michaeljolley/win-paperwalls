@@ -11,10 +11,17 @@ public class CacheService : ICacheService
     private readonly ILogger<CacheService> _logger;
     private readonly object _cacheLock = new();
 
-    public CacheService(IHttpClientFactory httpClientFactory, ILogger<CacheService> logger)
+    public CacheService(IHttpClientFactory httpClientFactory, ILogger<CacheService> logger, string? cacheDirectory = null)
     {
-        var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        _cacheDirectory = Path.Combine(localAppData, "WinPaperWalls", "cache");
+        if (cacheDirectory != null)
+        {
+            _cacheDirectory = cacheDirectory;
+        }
+        else
+        {
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            _cacheDirectory = Path.Combine(localAppData, "WinPaperWalls", "cache");
+        }
         
         _httpClient = httpClientFactory.CreateClient();
         _logger = logger;

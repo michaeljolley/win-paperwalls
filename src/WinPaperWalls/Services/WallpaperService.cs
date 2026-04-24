@@ -10,6 +10,7 @@ public class WallpaperService : IWallpaperService
     private readonly IGitHubImageService _githubService;
     private readonly ICacheService _cacheService;
     private readonly ISettingsService _settingsService;
+    private readonly IDesktopWallpaperService _desktopWallpaperService;
     private readonly ILogger<WallpaperService> _logger;
 
     private readonly HashSet<string> _recentlyUsed = new();
@@ -19,11 +20,13 @@ public class WallpaperService : IWallpaperService
         IGitHubImageService githubService,
         ICacheService cacheService,
         ISettingsService settingsService,
+        IDesktopWallpaperService desktopWallpaperService,
         ILogger<WallpaperService> logger)
     {
         _githubService = githubService;
         _cacheService = cacheService;
         _settingsService = settingsService;
+        _desktopWallpaperService = desktopWallpaperService;
         _logger = logger;
     }
 
@@ -131,7 +134,7 @@ public class WallpaperService : IWallpaperService
             }
 
             // Set wallpaper
-            DesktopWallpaper.SetWallpaper(imagePath, style);
+            _desktopWallpaperService.SetWallpaper(imagePath, style);
             _logger.LogInformation("Successfully changed wallpaper to {Path} with style {Style}", imagePath, style);
         }
         catch (Exception ex)
