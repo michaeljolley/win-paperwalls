@@ -44,3 +44,61 @@
 
 **Build Command:** `dotnet build` at repo root succeeds.
 
+### 2026-04-24: Phase 2 Image Source Complete
+
+**GitHub API Integration:**
+- **GitHubImageService** - Fetches topics and images from burkeholland/paper repo via GitHub API v3
+  - `GetTopicsAsync()` - Lists wallpaper topics from `/repos/burkeholland/paper/contents/wallpapers`
+  - `GetImagesAsync(topic)` - Lists images in a specific topic folder
+  - In-memory caching with 1-hour expiry to minimize API calls
+  - Rate limit tracking via `X-RateLimit-Remaining` header with warnings at <10 requests
+  - Filters topics by `AppSettings.ExcludedTopics`
+  - Sets `User-Agent: WinPaperWalls/1.0` header (required by GitHub API)
+  - Graceful fallback to stale cache on network errors
+
+**Cache Management:**
+- **CacheService** - LRU cache in `%LOCALAPPDATA%\WinPaperWalls\cache\`
+  - `DownloadImageAsync()` - Downloads and caches images, updates last access time
+  - `GetCachedImagePath()` - Returns path if cached
+  - `GetCacheSizeBytes()` - Calculates total cache size
+  - `EvictOldestAsync(targetBytes)` - LRU eviction based on `LastAccessTime` to stay under `CacheMaxMB`
+  - `ClearCacheAsync()` - Deletes all cached images
+  - Thread-safe file operations with lock
+
+**Wallpaper Orchestration:**
+- **WallpaperService** - Main orchestrator
+  - `ChangeWallpaperAsync()` - Core flow: select random topic → random image → download → set wallpaper
+  - Tracks last 20 used images to avoid repeats (HashSet with simple LRU trim)
+  - Smart retry logic: up to 10 attempts across different topics/images
+  - After 5 failed attempts, allows recently-used images to increase success rate
+  - Cache eviction triggered when size exceeds `CacheMaxMB`
+  - Integrates with `DesktopWallpaper.SetWallpaper()` for final application
+  - Comprehensive error handling (no internet, API down, empty topics)
+
+**DI Registration:**
+- Updated `App.xaml.cs` to register:
+  - `IHttpClientFactory` via `services.AddHttpClient()`
+  - Named client "GitHub" for API calls
+  - `IGitHubImageService`, `ICacheService`, `IWallpaperService` as singletons
+
+**NuGet Additions:**
+- `Microsoft.Extensions.Http` 9.0.0 for `IHttpClientFactory` pattern
+
+**Key Design Decisions:**
+- `System.Random.Shared` for thread-safe random selection
+- Synchronous `LoadSettings()` instead of async (matches SettingsService interface)
+- JSON deserialization uses `System.Text.Json` with `[JsonPropertyName]` attributes
+- Cache uses file system `LastAccessTime` for LRU tracking (simple, OS-managed)
+- Image file detection: `.jpg`, `.jpeg`, `.png`, `.bmp`, `.webp`
+- Recent history uses HashSet (not ideal LRU, but simple and good enough for 20 items)
+
+**Error Handling:**
+- Network failures return stale cached data when available
+- GitHub rate limiting logged with reset time
+- Missing topics/images logged but don't crash
+- Download failures trigger retry with different image
+
+**Next Steps:**
+- Phase 3: Scheduler service for automatic wallpaper rotation based on `IntervalMinutes`
+- Phase 4: UI enhancements in MainWindow for manual controls and cache management
+
