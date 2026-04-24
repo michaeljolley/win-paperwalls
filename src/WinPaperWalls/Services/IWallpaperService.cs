@@ -2,8 +2,8 @@ namespace WinPaperWalls.Services;
 
 public interface IWallpaperService
 {
-    /// <summary>
-    /// Changes the wallpaper to a new random image from available topics.
-    /// </summary>
-    Task ChangeWallpaperAsync();
+	/// <summary>
+	/// Changes the wallpaper to a new random image from available topics.
+	/// </summary>
+	Task ChangeWallpaperAsync();
 }

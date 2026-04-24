@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
@@ -8,14 +8,14 @@
 
   <Identity
     Name="BaldBeardedBuilder.WinPaperWalls"
-    Publisher="CN=BaldBeardedBuilder"
+	Publisher="CN=Bald Bearded Builder LLC, O=Bald Bearded Builder LLC, L=Odenville, S=Alabama, C=US"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="d4e8f5a0-1b2c-4d6e-9f0a-1b2c3d4e5f6a"
                     PhonePublisherId="00000000-0000-0000-0000-000000000000" />
 
   <Properties>
-    <DisplayName>WinPaperWalls</DisplayName>
+    <DisplayName>PaperWalls</DisplayName>
     <PublisherDisplayName>BaldBeardedBuilder</PublisherDisplayName>
     <Logo>Assets\logo.png</Logo>
   </Properties>
@@ -35,12 +35,12 @@
                  Executable="$targetnametoken$.exe"
                  EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="WinPaperWalls"
+        DisplayName="PaperWalls"
         Description="Rotates your Windows wallpaper daily with 4K images from the Paper collection."
         BackgroundColor="transparent"
         Square150x150Logo="Assets\logo.png"
         Square44x44Logo="Assets\logo.png">
-        <uap:DefaultTile Wide310x150Logo="Assets\logo.png" />
+        <uap:DefaultTile Wide310x150Logo="Assets\logo.png"  Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png"/>
         <uap:SplashScreen Image="Assets\logo.png" />
       </uap:VisualElements>
     </Application>
