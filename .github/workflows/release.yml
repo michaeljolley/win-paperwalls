@@ -1,0 +1,341 @@
+name: Release to Microsoft Store
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      
+      - name: Setup .NET 9 SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      
+      - name: Extract and format version from release tag
+        id: version
+        shell: pwsh
+        run: |
+          $tag = "${{ github.event.release.tag_name }}"
+          $version = $tag -replace '^v', ''
+          
+          # Ensure 4-part version (X.Y.Z.0)
+          $parts = $version -split '\.'
+          if ($parts.Length -eq 3) {
+            $version = "$version.0"
+          }
+          
+          Write-Host "Version: $version"
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+      
+      - name: Update Package.appxmanifest version
+        shell: pwsh
+        run: |
+          $manifestPath = "WeatherExtension/Package.appxmanifest"
+          $version = "${{ steps.version.outputs.version }}"
+          
+          [xml]$manifest = Get-Content $manifestPath
+          $manifest.Package.Identity.Version = $version
+          $manifest.Save($manifestPath)
+          
+          Write-Host "Updated Package.appxmanifest to version $version"
+      
+      - name: Restore dependencies
+        run: |
+          dotnet restore WeatherExtension/WeatherExtension.csproj -r win-x64
+          dotnet restore WeatherExtension.Tests/WeatherExtension.Tests.csproj -r win-x64
+      
+      - name: Build x64
+        run: dotnet build WeatherExtension/WeatherExtension.csproj -c Release -r win-x64 --no-restore
+      
+      - name: Build ARM64
+        run: dotnet build WeatherExtension/WeatherExtension.csproj -c Release -r win-arm64
+
+      - name: Build tests
+        run: dotnet build WeatherExtension.Tests/WeatherExtension.Tests.csproj -c Release -r win-x64 --no-restore
+      
+      - name: Run tests
+        run: dotnet test WeatherExtension.Tests/WeatherExtension.Tests.csproj -c Release -r win-x64 --no-build
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            WeatherExtension/bin/
+            WeatherExtension/obj/
+            WeatherExtension/Package.appxmanifest
+          retention-days: 1
+
+  package:
+    needs: build-and-test
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      
+      - name: Setup .NET 9 SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Setup .NET 10 SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: build-output
+      
+      - name: Update Package.appxmanifest version
+        shell: pwsh
+        run: |
+          $manifestPath = "WeatherExtension/Package.appxmanifest"
+          $version = "${{ needs.build-and-test.outputs.version }}"
+
+          [xml]$manifest = Get-Content $manifestPath
+          $manifest.Package.Identity.Version = $version
+          $manifest.Save($manifestPath)
+
+          Write-Host "Updated Package.appxmanifest to version $version"
+
+      - name: Restore dependencies
+        run: dotnet restore WeatherExtension.slnx
+      
+      - name: Publish x64 MSIX
+        run: >
+          dotnet publish WeatherExtension/WeatherExtension.csproj -c Release -r win-x64
+          /p:PublishProfile=win-x64
+          /p:AppxPackageSigningEnabled=false
+          /p:Version=${{ needs.build-and-test.outputs.version }}
+
+      - name: Publish ARM64 MSIX
+        run: >
+          dotnet publish WeatherExtension/WeatherExtension.csproj -c Release -r win-arm64
+          /p:PublishProfile=win-arm64
+          /p:AppxPackageSigningEnabled=false
+          /p:Version=${{ needs.build-and-test.outputs.version }}
+
+      - name: Azure login
+        uses: azure/login@v3
+        with:
+          creds: ${{ secrets.AZURE_CREDS }}
+
+      - name: Sign MSIX packages
+        uses: azure/artifact-signing-action@v1
+        with:
+          endpoint: https://eus.codesigning.azure.net/
+          signing-account-name: bbb-signing
+          certificate-profile-name: BaldBeardedBuilder
+          files-folder: ${{ github.workspace }}\WeatherExtension
+          files-folder-filter: msix
+          files-folder-recurse: true
+          file-digest: SHA256
+          timestamp-rfc3161: http://timestamp.acs.microsoft.com
+          timestamp-digest: SHA256
+
+      - name: Verify MSIX signatures
+        shell: pwsh
+        run: |
+          $msixFiles = Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse
+
+          if ($msixFiles.Count -eq 0) {
+            Write-Error "No MSIX packages found!"
+            exit 1
+          }
+
+          foreach ($file in $msixFiles) {
+            Write-Host "Verifying signature on $($file.Name)..."
+            $sig = Get-AuthenticodeSignature $file.FullName
+            Write-Host "  Status: $($sig.Status)"
+            Write-Host "  Signer: $($sig.SignerCertificate.Subject)"
+            if ($sig.Status -ne 'Valid') {
+              Write-Error "Signature on $($file.Name) is not valid: $($sig.Status)"
+              exit 1
+            }
+          }
+
+          Write-Host "All MSIX packages are signed and verified."
+      
+      - name: Find and upload MSIX packages
+        shell: pwsh
+        run: |
+          Write-Host "Searching for MSIX packages..."
+          
+          # Show what was produced
+          if (Test-Path "WeatherExtension/AppPackages") {
+            Write-Host "AppPackages directory contents:"
+            Get-ChildItem -Path "WeatherExtension/AppPackages" -Recurse | ForEach-Object { Write-Host "  $($_.FullName)" }
+          } else {
+            Write-Host "WeatherExtension/AppPackages directory does not exist"
+            Write-Host "Searching entire WeatherExtension directory for .msix files..."
+            Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse | ForEach-Object { Write-Host "  $($_.FullName)" }
+          }
+          
+          $msixFiles = Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse
+          
+          foreach ($file in $msixFiles) {
+            Write-Host "Found MSIX: $($file.FullName)"
+          }
+          
+          if ($msixFiles.Count -eq 0) {
+            Write-Error "No MSIX packages found!"
+            exit 1
+          }
+      
+      - name: Upload MSIX artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: msix-packages
+          path: WeatherExtension/**/*.msix
+          retention-days: 7
+
+      - name: Upload MSIX packages to GitHub Release
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $msixFiles = Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse
+          
+          foreach ($file in $msixFiles) {
+            Write-Host "Uploading $($file.Name) to release..."
+            gh release upload "${{ github.event.release.tag_name }}" "$($file.FullName)" --clobber
+          }
+
+      # --- Build Store-specific packages with the MS Store publisher identity ---
+      - name: Clean sideload MSIX packages
+        shell: pwsh
+        run: |
+          Write-Host "Removing sideload MSIX packages before Store build..."
+          Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse | Remove-Item -Force
+          if (Test-Path "WeatherExtension/AppPackages") {
+            Remove-Item -Path "WeatherExtension/AppPackages" -Recurse -Force
+          }
+
+      - name: Patch manifest with Store publisher identity
+        shell: pwsh
+        run: |
+          $manifestPath = "WeatherExtension/Package.appxmanifest"
+          $storePublisher = "${{ secrets.STORE_PUBLISHER_NAME }}"
+
+          [xml]$manifest = Get-Content $manifestPath
+          $manifest.Package.Identity.Publisher = $storePublisher
+          $manifest.Save($manifestPath)
+
+          Write-Host "Updated publisher to: $storePublisher"
+
+      - name: Publish x64 Store MSIX
+        run: >
+          dotnet publish WeatherExtension/WeatherExtension.csproj -c Release -r win-x64
+          /p:PublishProfile=win-x64
+          /p:AppxPackageSigningEnabled=false
+          /p:Version=${{ needs.build-and-test.outputs.version }}
+
+      - name: Publish ARM64 Store MSIX
+        run: >
+          dotnet publish WeatherExtension/WeatherExtension.csproj -c Release -r win-arm64
+          /p:PublishProfile=win-arm64
+          /p:AppxPackageSigningEnabled=false
+          /p:Version=${{ needs.build-and-test.outputs.version }}
+
+      - name: Collect Store MSIX packages
+        shell: pwsh
+        run: |
+          New-Item -Path "store-packages" -ItemType Directory -Force
+          $msixFiles = Get-ChildItem -Path "WeatherExtension" -Filter "*.msix" -Recurse
+          foreach ($file in $msixFiles) {
+            Write-Host "Copying $($file.Name) to store-packages/"
+            Copy-Item $file.FullName -Destination "store-packages/$($file.Name)"
+          }
+
+      - name: Upload Store MSIX artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: msix-store-packages
+          path: store-packages/*.msix
+          retention-days: 7
+
+  store-submit:
+    needs: [package, build-and-test]
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Update Package.appxmanifest for Store
+        shell: pwsh
+        run: |
+          $manifestPath = "WeatherExtension/Package.appxmanifest"
+          $version = "${{ needs.build-and-test.outputs.version }}"
+          $storePublisher = "${{ secrets.STORE_PUBLISHER_NAME }}"
+
+          [xml]$manifest = Get-Content $manifestPath
+          $manifest.Package.Identity.Version = $version
+          $manifest.Package.Identity.Publisher = $storePublisher
+          $manifest.Save($manifestPath)
+
+          Write-Host "Updated manifest: Version=$version, Publisher=$storePublisher"
+
+      - name: Download MSIX artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: msix-store-packages
+          path: msix-packages
+
+      - name: List Store MSIX packages
+        shell: pwsh
+        run: |
+          Write-Host "Store MSIX packages to submit:"
+          Get-ChildItem -Path "msix-packages" -Filter "*.msix" -Recurse | ForEach-Object {
+            Write-Host "  $($_.FullName) ($([math]::Round($_.Length / 1MB, 2)) MB)"
+          }
+      
+      - name: Setup Microsoft Store CLI
+        uses: microsoft/microsoft-store-apppublisher@v1.3
+      
+      - name: Configure Store credentials
+        shell: pwsh
+        run: |
+          msstore reconfigure `
+            --tenantId "${{ secrets.PARTNER_CENTER_TENANT_ID }}" `
+            --sellerId "${{ secrets.PARTNER_CENTER_SELLER_ID }}" `
+            --clientId "${{ secrets.PARTNER_CENTER_CLIENT_ID }}" `
+            --clientSecret "${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}"
+      
+      - name: Submit to Microsoft Store
+        shell: pwsh
+        run: |
+          msstore publish WeatherExtension -i msix-packages -nc -id "${{ secrets.STORE_PRODUCT_ID }}"
+
+  winget-publish:
+    needs: [package, build-and-test]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Submit to WinGet
+        uses: vedantmgoyal9/winget-releaser@v2
+        with:
+          identifier: BaldBeardedBuilder.WeatherforCommandPalette
+          installers-regex: '\.msix$'
+          token: ${{ secrets.WINGET_TOKEN }}
+          max-versions-to-keep: 3
+          version: ${{ needs.build-and-test.outputs.version }}
