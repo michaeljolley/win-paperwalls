@@ -17,6 +17,12 @@ public sealed partial class MainWindow : Window
 		ExtendsContentIntoTitleBar = true;
 		SetTitleBar(AppTitleBar);
 
+		// Set a compact window size for settings
+		var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+		var windowId = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(hwnd);
+		var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(windowId);
+		appWindow.Resize(new Windows.Graphics.SizeInt32(600, 800));
+
 		ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
 
 		// Populate ComboBox items from ViewModel arrays
