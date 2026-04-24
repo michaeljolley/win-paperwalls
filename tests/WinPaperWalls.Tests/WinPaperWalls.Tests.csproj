@@ -10,7 +10,16 @@
     <GenerateResourceMSBuildArchitecture></GenerateResourceMSBuildArchitecture>
     <GenerateResourceMSBuildRuntime></GenerateResourceMSBuildRuntime>
     <GeneratePri>false</GeneratePri>
+    <AppxPackage>false</AppxPackage>
+    <WindowsPackageType>None</WindowsPackageType>
+    <Platforms>x64</Platforms>
+    <Platform>x64</Platform>
+    <EnableDefaultPriIndexFileItems>false</EnableDefaultPriIndexFileItems>
   </PropertyGroup>
+  
+  <!-- Disable PRI generation tasks -->
+  <Target Name="_ExpandPriContent" />
+  <Target Name="_GenerateProjectPriFile" />
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />

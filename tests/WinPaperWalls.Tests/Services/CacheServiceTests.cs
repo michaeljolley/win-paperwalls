@@ -213,7 +213,7 @@ public class CacheServiceTests : IDisposable
         
         var size = service.GetCacheSizeBytes();
         
-        size.Should().BeGreaterOrEqualTo(0);
+        size.Should().BeGreaterThanOrEqualTo(0);
     }
 
     private class TestHttpMessageHandler : HttpMessageHandler
