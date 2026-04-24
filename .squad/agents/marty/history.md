@@ -244,3 +244,12 @@
 - `src/WinPaperWalls/MainWindow.xaml` — reordered Start with Windows, fixed ListView Height
 - `src/WinPaperWalls/MainWindow.xaml.cs` — updated window Resize dimensions
 
+
+
+## 2026-04-24T17:37:00Z — Settings Layout Fixes
+**Status:** SUCCESS
+- Move Start with Windows to last in Backgrounds
+- Bump window size 25% to 750×1000
+- Fix topic ListView scrolling with Height=300
+- Build: 0 errors | Tests: 48 pass
+- Committed and pushed
