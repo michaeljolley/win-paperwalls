@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="src/WinPaperWalls/WinPaperWalls.csproj" />
+    <Project Path="src/WinPaperWalls/WinPaperWalls.csproj">
+      <Platform Project="x64" />
+    </Project>
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/WinPaperWalls.Tests/WinPaperWalls.Tests.csproj">
