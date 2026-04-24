@@ -1,18 +1,19 @@
 # Privacy Policy
 
-**Weather Extension for Microsoft Command Palette**
+**WinPaperWalls**
 
-*Last updated: March 9, 2026*
+*Last updated: January 2025*
 
 ## Overview
 
-Weather Extension is an open-source extension for Microsoft Command Palette
-that displays weather information. Your privacy is important to us, and this
-extension is designed with that in mind.
+WinPaperWalls is an open-source Windows desktop application that automatically
+rotates your desktop wallpaper with 4K images from a public image repository.
+Your privacy is important to us, and this application is designed with that in
+mind.
 
 ## Data Collection
 
-**We do not collect any personal data.** This extension does not gather, store,
+**We do not collect any personal data.** This application does not gather, store,
 or transmit any personal information, usage analytics, telemetry, or tracking
 data of any kind.
 
@@ -23,18 +24,21 @@ share with third parties.
 
 ## Third-Party Services
 
-This extension makes requests to the [Open-Meteo API](https://open-meteo.com/)
-solely to retrieve weather and geocoding data based on locations you search for.
+This application makes unauthenticated requests to the
+[GitHub API](https://docs.github.com/en/rest?apiVersion=2022-11-28) solely to
+retrieve wallpaper image listings and download images from the
+[burkeholland/paper](https://github.com/burkeholland/paper) public repository.
 These requests are made directly from your device. We have no access to or
-control over these requests. Please refer to
-[Open-Meteo's privacy policy](https://open-meteo.com/en/terms) for details on
-how they handle API requests.
+control over these requests. The GitHub API is subject to public rate limits
+(60 requests per hour for unauthenticated requests). Please refer to
+[GitHub's privacy policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement)
+for details on how they handle API requests.
 
 ## Local Storage
 
-Any settings you configure (such as preferred location, temperature units, or
-update interval) are stored locally on your device and are never transmitted
-externally.
+Settings you configure (such as rotation interval and enabled/disabled state)
+and cached images are stored locally on your device in
+`%LocalAppData%\WinPaperWalls\` and are never transmitted externally.
 
 ## Changes to This Policy
 
@@ -44,4 +48,4 @@ repository.
 ## Contact
 
 If you have questions about this privacy policy, please open an issue on the
-[GitHub repository](https://github.com/michaeljolley/WeatherExtension).
+[GitHub repository](https://github.com/michaeljolley/win-paperwalls).

@@ -13,7 +13,7 @@ Only the latest release receives security updates.
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Instead, use [GitHub's private vulnerability reporting](https://github.com/michaeljolley/WeatherExtension/security/advisories/new) to submit a report.
+Instead, use [GitHub's private vulnerability reporting](https://github.com/michaeljolley/win-paperwalls/security/advisories/new) to submit a report.
 
 Please include:
 
@@ -32,12 +32,17 @@ Please include:
 
 ## Scope
 
-This project is a client-side weather extension. It does not collect or store
-user credentials. However, we take all security reports seriously, including:
+This project is a Windows desktop application that automatically rotates
+desktop wallpaper using images from a public GitHub repository. It makes
+unauthenticated requests to the GitHub API and uses Win32 P/Invoke for
+wallpaper management. The application does not collect or store user
+credentials or personal data. However, we take all security reports seriously,
+including:
 
 - Data exfiltration risks
 - Code injection vulnerabilities
 - Dependency vulnerabilities
+- Win32 P/Invoke safety issues
 - Privacy concerns beyond what's covered in our
   [Privacy Policy](PRIVACY_POLICY.md)
 

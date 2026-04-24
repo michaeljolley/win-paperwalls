@@ -1,7 +1,7 @@
-# Contributing to Weather Extension
+# Contributing to WinPaperWalls
 
-Thank you for your interest in contributing to the Weather Extension for
-Microsoft Command Palette! This guide will help you get started.
+Thank you for your interest in contributing to WinPaperWalls! This guide will
+help you get started.
 
 ## Code of Conduct
 
@@ -12,33 +12,32 @@ build something great together.
 
 ### Prerequisites
 
-- Windows 10 or 11
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) (main
-  project)
-- [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) (test
-  project)
-- [PowerToys](https://github.com/microsoft/PowerToys) with Command Palette
-  enabled (for manual testing)
+- Windows 10 (build 1809) or later
+- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+- Visual Studio 2022 (version 17.8+) or later with the following workloads:
+  - .NET desktop development
+  - Windows App SDK
+- [Windows App SDK 1.6+](https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads-and-tools)
 
-### Building
-
-The project requires a Windows runtime identifier due to MSIX packaging:
+### Building and Testing
 
 ```bash
-dotnet build WeatherExtension/WeatherExtension.csproj -r win-x64
+dotnet restore
+dotnet build
+dotnet test
 ```
 
-### Running Tests
+To run the application:
 
 ```bash
-dotnet test WeatherExtension.Tests/WeatherExtension.Tests.csproj -r win-x64
+dotnet run --project src/WinPaperWalls/WinPaperWalls.csproj
 ```
 
 ## How to Contribute
 
 ### Reporting Bugs
 
-- Search [existing issues](https://github.com/michaeljolley/WeatherExtension/issues)
+- Search [existing issues](https://github.com/michaeljolley/win-paperwalls/issues)
   before opening a new one
 - Include steps to reproduce, expected behavior, and actual behavior
 - Screenshots are very helpful for UI issues
@@ -90,17 +89,17 @@ Common types:
 ## Project Structure
 
 ```
-WeatherExtension/
-├── Assets/              # App icons and images
-├── Commands/            # Command implementations (pin, unpin, refresh)
-├── DockBands/           # Dock band items (current weather, pinned locations)
-├── Models/              # Data models (weather, geocoding, forecasts)
-├── Pages/               # UI pages (weather list, detail, hourly, settings)
-├── Properties/          # Resources and assembly info
-├── Services/            # API clients and business logic
-└── Icons.cs             # Weather condition emoji mappings
+src/WinPaperWalls/
+├── Assets/              # App icons (logo.png, logo.ico)
+├── Interop/             # Win32 P/Invoke for wallpaper setting
+├── Models/              # Data models (AppSettings, WallpaperImage)
+├── Services/            # Business logic (Settings, GitHub, Cache, Wallpaper, Scheduler, DesktopWallpaper, Startup)
+├── App.xaml.cs          # App entry, DI host, single-instance mutex
+├── MainWindow.xaml      # Settings window
+├── TrayIconView.xaml    # System tray icon and context menu
+└── WinPaperWalls.csproj
 
-WeatherExtension.Tests/  # Unit tests (MSTest + Moq)
+tests/WinPaperWalls.Tests/  # Unit tests (xunit + NSubstitute + FluentAssertions)
 ```
 
 ## License

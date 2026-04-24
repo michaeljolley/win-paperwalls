@@ -70,7 +70,7 @@ The application provides a graphical settings UI accessible from the system tray
 
 1. Launch WinPaperWalls - it will minimize to the system tray
 2. Right-click the tray icon to access:
-   - **Next Wallpaper:** Immediately change to a new random wallpaper
+   - **Refresh PaperWall:** Immediately change to a new random wallpaper
    - **Settings:** Open the settings window to configure the application
    - **Exit:** Close the application
 3. The wallpaper will automatically change based on your configured interval
