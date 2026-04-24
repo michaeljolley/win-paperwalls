@@ -94,3 +94,30 @@
 - May need toast notifications when settings are saved
 - Future: Add wallpaper preview in settings window
 
+### 2026-04-24 - Cross-Phase: Phase 5 Scheduler & Startup Manager (Biff)
+
+**What Biff built in Phase 5:**
+- SchedulerService with PeriodicTimer for automatic wallpaper rotation at user-configured interval
+- Immediate wallpaper change on app startup (no initial wait)
+- Dynamic settings integration: listens to ISettingsService.SettingsChanged event and restarts timer with new interval
+- Thread-safe timer restart logic with proper disposal of old timer and cancellation tokens
+- NextChangeTime property exposed for UI display
+- StartupManager for registry-based "Start with Windows" support
+  - Uses HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+  - SetStartWithWindows(bool) and IsStartWithWindows() methods
+  - Handles .dll→.exe path conversion for WinUI apps
+- DI registration pattern: SchedulerService as singleton accessible via SchedulerService, ISchedulerService, and IHostedService
+- Generic host automatically invokes StartAsync/StopAsync on app startup/shutdown
+
+**Integration with Marty's Phase 4 work:**
+- Scheduler listens to SettingsChanged event fired by Phase 4 settings window
+- StartupManager called from SettingsWindow when user toggles "Start with Windows" toggle
+- Phase 4 settings window serves as UI for scheduler interval configuration
+- Settings persistence via ISettingsService properly flows to scheduler configuration
+
+**Impact on Phase 4 functionality:**
+- Phase 4 settings window now fully functional: interval changes trigger scheduler restart with no manual app restart needed
+- "Start with Windows" toggle in Phase 4 now backed by StartupManager registry operations
+- Scheduler provides automatic wallpaper rotation when app is running
+- Combined with Phase 3 tray menu, user has both automatic (scheduler) and manual (Next Wallpaper menu item) control
+

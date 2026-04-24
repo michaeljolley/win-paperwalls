@@ -166,3 +166,74 @@ No API changes required. Marty's TrayIconView component cleanly integrates all P
 **Build Status:** 
 - `dotnet build` succeeds with 2 warnings (unused event in TrayIconView - pre-existing)
 - All new services compile and integrate cleanly
+
+### 2026-04-24: Phase 5 Background Scheduler Complete
+
+**Core Scheduler Implementation:**
+- **SchedulerService** - Implements both `ISchedulerService` and `IHostedService`
+   - Uses `PeriodicTimer` (modern .NET approach) for interval-based wallpaper changes
+   - Reads `AppSettings.IntervalMinutes` to configure timer period
+   - Changes wallpaper immediately on first start (no initial wait)
+   - On each timer tick: calls `IWallpaperService.ChangeWallpaperAsync()`
+   - Tracks `NextChangeTime` property for UI display
+   - Exception handling in tick loop - logs errors but continues running (no crash)
+   
+**Dynamic Settings Integration:**
+- Listens to `ISettingsService.SettingsChanged` event
+- When settings change (new interval):
+   1. Cancels current timer safely
+   2. Waits for timer task to complete
+   3. Disposes old timer and cancellation token
+   4. Creates new timer with updated interval
+   5. Updates `NextChangeTime` to reflect new schedule
+- Thread-safe timer restart using lock on shared state
+
+**Windows Startup Integration:**
+- **StartupManager** - Registry-based "Start with Windows" support
+   - Uses `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`
+   - `SetStartWithWindows(bool)` - Adds/removes registry entry with quoted exe path
+   - `IsStartWithWindows()` - Checks if registry entry exists
+   - Gets executable path from `Assembly.GetExecutingAssembly().Location`
+   - Handles both .dll and .exe paths (converts .dll → .exe for WinUI apps)
+   - Comprehensive error logging for registry operations
+
+**DI Registration Pattern:**
+- SchedulerService registered three ways in `App.xaml.cs`:
+   1. As singleton `SchedulerService` (concrete class)
+   2. As `ISchedulerService` interface (resolves to same instance)
+   3. As `IHostedService` (resolves to same instance for host lifecycle)
+- This pattern ensures single instance with multiple interface access points
+- Generic host automatically calls `StartAsync()`/`StopAsync()` on app start/shutdown
+
+**Key Design Decisions:**
+- `PeriodicTimer` instead of `System.Timers.Timer` or `Task.Delay` loops (recommended modern pattern)
+- Async/await throughout with proper cancellation token support
+- Event handler for settings change is async void (safe in this context - all exceptions caught and logged)
+- Lock-based thread safety for timer restart to prevent race conditions
+- Immediate wallpaper change on startup improves first-run experience
+- NextChangeTime exposed for UI status display
+
+**NuGet Package Added:**
+- `System.Net.Http.Json` 10.0.7 - Required for `ReadFromJsonAsync` extension method in MainWindow.xaml.cs
+- This resolved build error where `HttpContent.ReadFromJsonAsync` was not found
+
+**Integration Notes:**
+- Scheduler uses existing `IWallpaperService` interface - no changes needed
+- No direct UI dependencies - fully headless background operation
+- Respects settings changes without restart
+- Clean shutdown via `IHostedService` lifecycle
+- Listens to ISettingsService.SettingsChanged event from Phase 4 settings window
+
+### 2026-04-24: Cross-Phase Integration with Marty (Phase 4)
+
+Marty (Phase 4) built the complete settings window UI with all configuration options including rotation interval selector, dynamic topic selector, wallpaper style picker, cache management, and Start-with-Windows toggle. Phase 5 scheduler integrates seamlessly:
+
+- Scheduler reads `AppSettings.IntervalMinutes` set by Phase 4 settings window
+- Listens to `SettingsChanged` event from settings window and automatically restarts timer with new interval
+- StartupManager is called from SettingsWindow when user toggles "Start with Windows" setting
+- No API changes required between phases - all integration through existing interfaces and event patterns
+
+**Build Status:** 
+- `dotnet build` succeeds
+- All scheduler and startup manager services compile and integrate cleanly
+- Settings window properly triggers scheduler restart on interval change
