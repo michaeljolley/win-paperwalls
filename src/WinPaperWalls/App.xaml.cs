@@ -43,6 +43,12 @@ public partial class App : Application
                 services.AddSingleton<IGitHubImageService, GitHubImageService>();
                 services.AddSingleton<ICacheService, CacheService>();
                 services.AddSingleton<IWallpaperService, WallpaperService>();
+                services.AddSingleton<StartupManager>();
+                
+                // Register scheduler as both ISchedulerService and IHostedService
+                services.AddSingleton<SchedulerService>();
+                services.AddSingleton<ISchedulerService>(sp => sp.GetRequiredService<SchedulerService>());
+                services.AddHostedService(sp => sp.GetRequiredService<SchedulerService>());
                 
                 // Register window (created on-demand but kept as singleton)
                 services.AddSingleton<MainWindow>();

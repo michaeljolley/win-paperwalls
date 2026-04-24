@@ -74,6 +74,10 @@
             "Microsoft.WindowsAppSDK": {
               "target": "Package",
               "version": "[1.6.240923002, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[10.0.7, )"
             }
           },
           "imports": [

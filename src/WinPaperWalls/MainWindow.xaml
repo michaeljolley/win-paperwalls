@@ -8,10 +8,144 @@
     mc:Ignorable="d"
     Title="WinPaperWalls Settings">
 
-    <Grid>
-        <StackPanel Padding="20" Spacing="10">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Padding="24" Spacing="20" MaxWidth="600">
+            <!-- Header -->
             <TextBlock Text="WinPaperWalls Settings" Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock Text="Settings UI coming soon..." Style="{ThemeResource BodyTextBlockStyle}" />
+
+            <!-- Rotation Interval Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Rotation Interval" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ComboBox x:Name="IntervalComboBox" 
+                          HorizontalAlignment="Stretch"
+                          PlaceholderText="Select interval">
+                    <ComboBoxItem Content="Every 30 minutes" Tag="30" />
+                    <ComboBoxItem Content="Every hour" Tag="60" />
+                    <ComboBoxItem Content="Every 4 hours" Tag="240" />
+                    <ComboBoxItem Content="Every 12 hours" Tag="720" />
+                    <ComboBoxItem Content="Every day" Tag="1440" IsSelected="True" />
+                    <ComboBoxItem Content="Every 2 days" Tag="2880" />
+                    <ComboBoxItem Content="Every week" Tag="10080" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Topic Selector Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Topics" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="Uncheck topics you want to exclude" 
+                           Style="{ThemeResource CaptionTextBlockStyle}" 
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                
+                <!-- Loading state -->
+                <StackPanel x:Name="TopicsLoadingPanel" 
+                            Orientation="Horizontal" 
+                            Spacing="12" 
+                            Visibility="Collapsed">
+                    <ProgressRing IsActive="True" Width="20" Height="20" />
+                    <TextBlock Text="Loading topics from GitHub..." VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Error state -->
+                <InfoBar x:Name="TopicsErrorBar"
+                         Severity="Error"
+                         IsOpen="False"
+                         IsClosable="True"
+                         Title="Failed to load topics"
+                         Message="Could not connect to GitHub. Using cached data if available." />
+
+                <!-- Topic selection controls -->
+                <StackPanel x:Name="TopicsPanel" Spacing="8" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button x:Name="SelectAllButton" 
+                                Content="Select All" 
+                                Click="SelectAllButton_Click"
+                                Style="{ThemeResource AccentButtonStyle}" />
+                        <Button x:Name="DeselectAllButton" 
+                                Content="Deselect All" 
+                                Click="DeselectAllButton_Click" />
+                    </StackPanel>
+                    
+                    <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                            BorderThickness="1" 
+                            CornerRadius="4"
+                            MaxHeight="200">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsRepeater x:Name="TopicsRepeater" Margin="8">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Spacing="4" />
+                                </ItemsRepeater.Layout>
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate x:DataType="local:TopicItem">
+                                        <CheckBox Content="{x:Bind Name}" 
+                                                  IsChecked="{x:Bind IsSelected, Mode=TwoWay}" />
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                        </ScrollViewer>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Wallpaper Style Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Style" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ComboBox x:Name="StyleComboBox" 
+                          HorizontalAlignment="Stretch"
+                          PlaceholderText="Select style">
+                    <ComboBoxItem Content="Fill" Tag="Fill" IsSelected="True" />
+                    <ComboBoxItem Content="Fit" Tag="Fit" />
+                    <ComboBoxItem Content="Stretch" Tag="Stretch" />
+                    <ComboBoxItem Content="Tile" Tag="Tile" />
+                    <ComboBoxItem Content="Center" Tag="Center" />
+                    <ComboBoxItem Content="Span" Tag="Span" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Cache Management Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Cache Management" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <TextBlock x:Name="CacheSizeText" 
+                           Text="Using 0 MB of 500 MB"
+                           Style="{ThemeResource BodyTextBlockStyle}" />
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Maximum Cache Size (MB)" Style="{ThemeResource CaptionTextBlockStyle}" />
+                    <NumberBox x:Name="CacheMaxNumberBox"
+                               Minimum="100"
+                               Maximum="2000"
+                               Value="500"
+                               SpinButtonPlacementMode="Inline"
+                               HorizontalAlignment="Stretch" />
+                </StackPanel>
+
+                <Button x:Name="ClearCacheButton" 
+                        Content="Clear Cache" 
+                        Click="ClearCacheButton_Click" />
+            </StackPanel>
+
+            <!-- Startup Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Startup" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ToggleSwitch x:Name="StartWithWindowsToggle"
+                              Header="Start with Windows"
+                              IsOn="True" />
+            </StackPanel>
+
+            <!-- Save Button -->
+            <StackPanel Spacing="8">
+                <Button x:Name="SaveButton" 
+                        Content="Save Settings" 
+                        Click="SaveButton_Click"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        HorizontalAlignment="Stretch" />
+                
+                <InfoBar x:Name="SaveSuccessBar"
+                         Severity="Success"
+                         IsOpen="False"
+                         IsClosable="True"
+                         Title="Settings saved"
+                         Message="Your settings have been saved successfully." />
+            </StackPanel>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Window>

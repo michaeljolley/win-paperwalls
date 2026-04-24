@@ -8,11 +8,145 @@
     mc:Ignorable="d"
     Title="WinPaperWalls Settings">
 
-    <Grid>
-        <StackPanel Padding="20" Spacing="10">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Padding="24" Spacing="20" MaxWidth="600">
+            <!-- Header -->
             <TextBlock Text="WinPaperWalls Settings" Style="{ThemeResource TitleTextBlockStyle}" />
-            <TextBlock Text="Settings UI coming soon..." Style="{ThemeResource BodyTextBlockStyle}" />
+
+            <!-- Rotation Interval Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Rotation Interval" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ComboBox x:ConnectionId='17' x:Name="IntervalComboBox" 
+                          HorizontalAlignment="Stretch"
+                          PlaceholderText="Select interval">
+                    <ComboBoxItem Content="Every 30 minutes" Tag="30" />
+                    <ComboBoxItem Content="Every hour" Tag="60" />
+                    <ComboBoxItem Content="Every 4 hours" Tag="240" />
+                    <ComboBoxItem Content="Every 12 hours" Tag="720" />
+                    <ComboBoxItem Content="Every day" Tag="1440" IsSelected="True" />
+                    <ComboBoxItem Content="Every 2 days" Tag="2880" />
+                    <ComboBoxItem Content="Every week" Tag="10080" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Topic Selector Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Topics" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <TextBlock Text="Uncheck topics you want to exclude" 
+                           Style="{ThemeResource CaptionTextBlockStyle}" 
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                
+                <!-- Loading state -->
+                <StackPanel x:ConnectionId='9' x:Name="TopicsLoadingPanel" 
+                            Orientation="Horizontal" 
+                            Spacing="12" 
+                            Visibility="Collapsed">
+                    <ProgressRing IsActive="True" Width="20" Height="20" />
+                    <TextBlock Text="Loading topics from GitHub..." VerticalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Error state -->
+                <InfoBar x:ConnectionId='10' x:Name="TopicsErrorBar"
+                         Severity="Error"
+                         IsOpen="False"
+                         IsClosable="True"
+                         Title="Failed to load topics"
+                         Message="Could not connect to GitHub. Using cached data if available." />
+
+                <!-- Topic selection controls -->
+                <StackPanel x:ConnectionId='11' x:Name="TopicsPanel" Spacing="8" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button x:ConnectionId='15' x:Name="SelectAllButton" 
+                                Content="Select All" 
+                                                             
+                                Style="{ThemeResource AccentButtonStyle}" />
+                        <Button x:ConnectionId='16' x:Name="DeselectAllButton" 
+                                Content="Deselect All" 
+                                                                />
+                    </StackPanel>
+                    
+                    <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" 
+                            BorderThickness="1" 
+                            CornerRadius="4"
+                            MaxHeight="200">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsRepeater x:ConnectionId='12' x:Name="TopicsRepeater" Margin="8">
+                                <ItemsRepeater.Layout>
+                                    <StackLayout Spacing="4" />
+                                </ItemsRepeater.Layout>
+                                <ItemsRepeater.ItemTemplate>
+                                    <DataTemplate                             >
+                                        <CheckBox x:ConnectionId='14'                         
+                                                                                               />
+                                    </DataTemplate>
+                                </ItemsRepeater.ItemTemplate>
+                            </ItemsRepeater>
+                        </ScrollViewer>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Wallpaper Style Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Wallpaper Style" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ComboBox x:ConnectionId='8' x:Name="StyleComboBox" 
+                          HorizontalAlignment="Stretch"
+                          PlaceholderText="Select style">
+                    <ComboBoxItem Content="Fill" Tag="Fill" IsSelected="True" />
+                    <ComboBoxItem Content="Fit" Tag="Fit" />
+                    <ComboBoxItem Content="Stretch" Tag="Stretch" />
+                    <ComboBoxItem Content="Tile" Tag="Tile" />
+                    <ComboBoxItem Content="Center" Tag="Center" />
+                    <ComboBoxItem Content="Span" Tag="Span" />
+                </ComboBox>
+            </StackPanel>
+
+            <!-- Cache Management Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Cache Management" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <TextBlock x:ConnectionId='5' x:Name="CacheSizeText" 
+                           Text="Using 0 MB of 500 MB"
+                           Style="{ThemeResource BodyTextBlockStyle}" />
+                
+                <StackPanel Spacing="4">
+                    <TextBlock Text="Maximum Cache Size (MB)" Style="{ThemeResource CaptionTextBlockStyle}" />
+                    <NumberBox x:ConnectionId='7' x:Name="CacheMaxNumberBox"
+                               Minimum="100"
+                               Maximum="2000"
+                               Value="500"
+                               SpinButtonPlacementMode="Inline"
+                               HorizontalAlignment="Stretch" />
+                </StackPanel>
+
+                <Button x:ConnectionId='6' x:Name="ClearCacheButton" 
+                        Content="Clear Cache" 
+                                                       />
+            </StackPanel>
+
+            <!-- Startup Section -->
+            <StackPanel Spacing="8">
+                <TextBlock Text="Startup" Style="{ThemeResource SubtitleTextBlockStyle}" />
+                <ToggleSwitch x:ConnectionId='4' x:Name="StartWithWindowsToggle"
+                              Header="Start with Windows"
+                              IsOn="True" />
+            </StackPanel>
+
+            <!-- Save Button -->
+            <StackPanel Spacing="8">
+                <Button x:ConnectionId='2' x:Name="SaveButton" 
+                        Content="Save Settings" 
+                                                
+                        Style="{ThemeResource AccentButtonStyle}"
+                        HorizontalAlignment="Stretch" />
+                
+                <InfoBar x:ConnectionId='3' x:Name="SaveSuccessBar"
+                         Severity="Success"
+                         IsOpen="False"
+                         IsClosable="True"
+                         Title="Settings saved"
+                         Message="Your settings have been saved successfully." />
+            </StackPanel>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </Window>
 

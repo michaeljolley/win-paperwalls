@@ -226,69 +226,123 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[30];
+            _typeNameTable = new string[57];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
             _typeNameTable[3] = "Boolean";
-            _typeNameTable[4] = "WinPaperWalls.MainWindow";
-            _typeNameTable[5] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[6] = "H.NotifyIcon.TaskbarIcon";
-            _typeNameTable[7] = "Microsoft.UI.Xaml.FrameworkElement";
-            _typeNameTable[8] = "String";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Media.ImageSource";
-            _typeNameTable[10] = "System.Windows.Input.ICommand";
-            _typeNameTable[11] = "H.NotifyIcon.Core.TrayIcon";
-            _typeNameTable[12] = "H.NotifyIcon.Core.PopupActivationMode";
-            _typeNameTable[13] = "System.Enum";
-            _typeNameTable[14] = "System.ValueType";
-            _typeNameTable[15] = "H.NotifyIcon.ContextMenuMode";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.UIElement";
-            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.Primitives.Popup";
-            _typeNameTable[18] = "Microsoft.UI.Xaml.Controls.Primitives.PlacementMode";
-            _typeNameTable[19] = "Microsoft.UI.Xaml.Thickness";
-            _typeNameTable[20] = "Guid";
-            _typeNameTable[21] = "System.Drawing.Icon";
-            _typeNameTable[22] = "System.MarshalByRefObject";
-            _typeNameTable[23] = "Microsoft.UI.Xaml.Controls.ToolTip";
-            _typeNameTable[24] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[25] = "WinPaperWalls.TrayIconView";
-            _typeNameTable[26] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[28] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[29] = "Int32";
+            _typeNameTable[4] = "Microsoft.UI.Xaml.Controls.InfoBar";
+            _typeNameTable[5] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.InfoBarSeverity";
+            _typeNameTable[7] = "System.Enum";
+            _typeNameTable[8] = "System.ValueType";
+            _typeNameTable[9] = "String";
+            _typeNameTable[10] = "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase";
+            _typeNameTable[11] = "System.Windows.Input.ICommand";
+            _typeNameTable[12] = "Microsoft.UI.Xaml.Style";
+            _typeNameTable[13] = "Microsoft.UI.Xaml.DataTemplate";
+            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.IconSource";
+            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings";
+            _typeNameTable[16] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.NumberBox";
+            _typeNameTable[18] = "Double";
+            _typeNameTable[19] = "Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode";
+            _typeNameTable[20] = "Windows.Globalization.NumberFormatting.INumberFormatter2";
+            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase";
+            _typeNameTable[22] = "Microsoft.UI.Xaml.Media.SolidColorBrush";
+            _typeNameTable[23] = "Microsoft.UI.Xaml.TextReadingOrder";
+            _typeNameTable[24] = "Microsoft.UI.Xaml.Controls.NumberBoxValidationMode";
+            _typeNameTable[25] = "Microsoft.UI.Xaml.Controls.ItemsRepeater";
+            _typeNameTable[26] = "Microsoft.UI.Xaml.FrameworkElement";
+            _typeNameTable[27] = "Microsoft.UI.Xaml.Controls.Layout";
+            _typeNameTable[28] = "Microsoft.UI.Xaml.Media.Brush";
+            _typeNameTable[29] = "Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider";
+            _typeNameTable[30] = "Microsoft.UI.Xaml.Controls.ItemsSourceView";
+            _typeNameTable[31] = "Microsoft.UI.Xaml.Controls.StackLayout";
+            _typeNameTable[32] = "Microsoft.UI.Xaml.Controls.VirtualizingLayout";
+            _typeNameTable[33] = "Microsoft.UI.Xaml.Controls.Orientation";
+            _typeNameTable[34] = "Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation";
+            _typeNameTable[35] = "Microsoft.UI.Xaml.Controls.ProgressRing";
+            _typeNameTable[36] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
+            _typeNameTable[37] = "WinPaperWalls.MainWindow";
+            _typeNameTable[38] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[39] = "H.NotifyIcon.TaskbarIcon";
+            _typeNameTable[40] = "Microsoft.UI.Xaml.Media.ImageSource";
+            _typeNameTable[41] = "H.NotifyIcon.Core.TrayIcon";
+            _typeNameTable[42] = "H.NotifyIcon.Core.PopupActivationMode";
+            _typeNameTable[43] = "H.NotifyIcon.ContextMenuMode";
+            _typeNameTable[44] = "Microsoft.UI.Xaml.UIElement";
+            _typeNameTable[45] = "Microsoft.UI.Xaml.Controls.Primitives.Popup";
+            _typeNameTable[46] = "Microsoft.UI.Xaml.Controls.Primitives.PlacementMode";
+            _typeNameTable[47] = "Microsoft.UI.Xaml.Thickness";
+            _typeNameTable[48] = "Guid";
+            _typeNameTable[49] = "System.Drawing.Icon";
+            _typeNameTable[50] = "System.MarshalByRefObject";
+            _typeNameTable[51] = "Microsoft.UI.Xaml.Controls.ToolTip";
+            _typeNameTable[52] = "WinPaperWalls.TrayIconView";
+            _typeNameTable[53] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[54] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[55] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[56] = "Int32";
 
-            _typeTable = new global::System.Type[30];
+            _typeTable = new global::System.Type[57];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
             _typeTable[3] = typeof(global::System.Boolean);
-            _typeTable[4] = typeof(global::WinPaperWalls.MainWindow);
-            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[6] = typeof(global::H.NotifyIcon.TaskbarIcon);
-            _typeTable[7] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
-            _typeTable[8] = typeof(global::System.String);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Media.ImageSource);
-            _typeTable[10] = typeof(global::System.Windows.Input.ICommand);
-            _typeTable[11] = typeof(global::H.NotifyIcon.Core.TrayIcon);
-            _typeTable[12] = typeof(global::H.NotifyIcon.Core.PopupActivationMode);
-            _typeTable[13] = typeof(global::System.Enum);
-            _typeTable[14] = typeof(global::System.ValueType);
-            _typeTable[15] = typeof(global::H.NotifyIcon.ContextMenuMode);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.UIElement);
-            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.Popup);
-            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.PlacementMode);
-            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Thickness);
-            _typeTable[20] = typeof(global::System.Guid);
-            _typeTable[21] = typeof(global::System.Drawing.Icon);
-            _typeTable[22] = typeof(global::System.MarshalByRefObject);
-            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.Controls.ToolTip);
-            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[25] = typeof(global::WinPaperWalls.TrayIconView);
-            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[28] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[29] = typeof(global::System.Int32);
+            _typeTable[4] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBar);
+            _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarSeverity);
+            _typeTable[7] = typeof(global::System.Enum);
+            _typeTable[8] = typeof(global::System.ValueType);
+            _typeTable[9] = typeof(global::System.String);
+            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.ButtonBase);
+            _typeTable[11] = typeof(global::System.Windows.Input.ICommand);
+            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Style);
+            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.DataTemplate);
+            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.IconSource);
+            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings);
+            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBox);
+            _typeTable[18] = typeof(global::System.Double);
+            _typeTable[19] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode);
+            _typeTable[20] = typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2);
+            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase);
+            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.Media.SolidColorBrush);
+            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.TextReadingOrder);
+            _typeTable[24] = typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode);
+            _typeTable[25] = typeof(global::Microsoft.UI.Xaml.Controls.ItemsRepeater);
+            _typeTable[26] = typeof(global::Microsoft.UI.Xaml.FrameworkElement);
+            _typeTable[27] = typeof(global::Microsoft.UI.Xaml.Controls.Layout);
+            _typeTable[28] = typeof(global::Microsoft.UI.Xaml.Media.Brush);
+            _typeTable[29] = typeof(global::Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider);
+            _typeTable[30] = typeof(global::Microsoft.UI.Xaml.Controls.ItemsSourceView);
+            _typeTable[31] = typeof(global::Microsoft.UI.Xaml.Controls.StackLayout);
+            _typeTable[32] = typeof(global::Microsoft.UI.Xaml.Controls.VirtualizingLayout);
+            _typeTable[33] = typeof(global::Microsoft.UI.Xaml.Controls.Orientation);
+            _typeTable[34] = typeof(global::Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation);
+            _typeTable[35] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
+            _typeTable[36] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
+            _typeTable[37] = typeof(global::WinPaperWalls.MainWindow);
+            _typeTable[38] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[39] = typeof(global::H.NotifyIcon.TaskbarIcon);
+            _typeTable[40] = typeof(global::Microsoft.UI.Xaml.Media.ImageSource);
+            _typeTable[41] = typeof(global::H.NotifyIcon.Core.TrayIcon);
+            _typeTable[42] = typeof(global::H.NotifyIcon.Core.PopupActivationMode);
+            _typeTable[43] = typeof(global::H.NotifyIcon.ContextMenuMode);
+            _typeTable[44] = typeof(global::Microsoft.UI.Xaml.UIElement);
+            _typeTable[45] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.Popup);
+            _typeTable[46] = typeof(global::Microsoft.UI.Xaml.Controls.Primitives.PlacementMode);
+            _typeTable[47] = typeof(global::Microsoft.UI.Xaml.Thickness);
+            _typeTable[48] = typeof(global::System.Guid);
+            _typeTable[49] = typeof(global::System.Drawing.Icon);
+            _typeTable[50] = typeof(global::System.MarshalByRefObject);
+            _typeTable[51] = typeof(global::Microsoft.UI.Xaml.Controls.ToolTip);
+            _typeTable[52] = typeof(global::WinPaperWalls.TrayIconView);
+            _typeTable[53] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[54] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[55] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[56] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -324,27 +378,51 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
         }
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
-        private object Activate_4_MainWindow() { return new global::WinPaperWalls.MainWindow(); }
-        private object Activate_6_TaskbarIcon() { return new global::H.NotifyIcon.TaskbarIcon(); }
-        private object Activate_11_TrayIcon() { return new global::H.NotifyIcon.Core.TrayIcon(); }
-        private object Activate_25_TrayIconView() { return new global::WinPaperWalls.TrayIconView(); }
-        private object Activate_27_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_4_InfoBar() { return new global::Microsoft.UI.Xaml.Controls.InfoBar(); }
+        private object Activate_15_InfoBarTemplateSettings() { return new global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings(); }
+        private object Activate_17_NumberBox() { return new global::Microsoft.UI.Xaml.Controls.NumberBox(); }
+        private object Activate_25_ItemsRepeater() { return new global::Microsoft.UI.Xaml.Controls.ItemsRepeater(); }
+        private object Activate_29_ItemCollectionTransitionProvider() { return new global::Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider(); }
+        private object Activate_31_StackLayout() { return new global::Microsoft.UI.Xaml.Controls.StackLayout(); }
+        private object Activate_32_VirtualizingLayout() { return new global::Microsoft.UI.Xaml.Controls.VirtualizingLayout(); }
+        private object Activate_35_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
+        private object Activate_37_MainWindow() { return new global::WinPaperWalls.MainWindow(); }
+        private object Activate_39_TaskbarIcon() { return new global::H.NotifyIcon.TaskbarIcon(); }
+        private object Activate_41_TrayIcon() { return new global::H.NotifyIcon.Core.TrayIcon(); }
+        private object Activate_52_TrayIconView() { return new global::WinPaperWalls.TrayIconView(); }
+        private object Activate_54_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
-        private void StaticInitializer_4_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::WinPaperWalls.MainWindow).TypeHandle);
-        private void StaticInitializer_6_TaskbarIcon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.TaskbarIcon).TypeHandle);
-        private void StaticInitializer_10_ICommand() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Windows.Input.ICommand).TypeHandle);
-        private void StaticInitializer_11_TrayIcon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.Core.TrayIcon).TypeHandle);
-        private void StaticInitializer_12_PopupActivationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.Core.PopupActivationMode).TypeHandle);
-        private void StaticInitializer_13_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
-        private void StaticInitializer_14_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
-        private void StaticInitializer_15_ContextMenuMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.ContextMenuMode).TypeHandle);
-        private void StaticInitializer_19_Thickness() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Thickness).TypeHandle);
-        private void StaticInitializer_20_Guid() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Guid).TypeHandle);
-        private void StaticInitializer_21_Icon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Drawing.Icon).TypeHandle);
-        private void StaticInitializer_22_MarshalByRefObject() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.MarshalByRefObject).TypeHandle);
-        private void StaticInitializer_25_TrayIconView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::WinPaperWalls.TrayIconView).TypeHandle);
-        private void StaticInitializer_27_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_28_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_4_InfoBar() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBar).TypeHandle);
+        private void StaticInitializer_6_InfoBarSeverity() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBarSeverity).TypeHandle);
+        private void StaticInitializer_7_Enum() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Enum).TypeHandle);
+        private void StaticInitializer_8_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
+        private void StaticInitializer_11_ICommand() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Windows.Input.ICommand).TypeHandle);
+        private void StaticInitializer_15_InfoBarTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings).TypeHandle);
+        private void StaticInitializer_17_NumberBox() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBox).TypeHandle);
+        private void StaticInitializer_19_NumberBoxSpinButtonPlacementMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode).TypeHandle);
+        private void StaticInitializer_20_INumberFormatter2() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.Globalization.NumberFormatting.INumberFormatter2).TypeHandle);
+        private void StaticInitializer_24_NumberBoxValidationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode).TypeHandle);
+        private void StaticInitializer_25_ItemsRepeater() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ItemsRepeater).TypeHandle);
+        private void StaticInitializer_27_Layout() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.Layout).TypeHandle);
+        private void StaticInitializer_29_ItemCollectionTransitionProvider() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider).TypeHandle);
+        private void StaticInitializer_30_ItemsSourceView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ItemsSourceView).TypeHandle);
+        private void StaticInitializer_31_StackLayout() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.StackLayout).TypeHandle);
+        private void StaticInitializer_32_VirtualizingLayout() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.VirtualizingLayout).TypeHandle);
+        private void StaticInitializer_34_IndexBasedLayoutOrientation() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation).TypeHandle);
+        private void StaticInitializer_35_ProgressRing() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing).TypeHandle);
+        private void StaticInitializer_36_ProgressRingTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings).TypeHandle);
+        private void StaticInitializer_37_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::WinPaperWalls.MainWindow).TypeHandle);
+        private void StaticInitializer_39_TaskbarIcon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.TaskbarIcon).TypeHandle);
+        private void StaticInitializer_41_TrayIcon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.Core.TrayIcon).TypeHandle);
+        private void StaticInitializer_42_PopupActivationMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.Core.PopupActivationMode).TypeHandle);
+        private void StaticInitializer_43_ContextMenuMode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::H.NotifyIcon.ContextMenuMode).TypeHandle);
+        private void StaticInitializer_47_Thickness() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Thickness).TypeHandle);
+        private void StaticInitializer_48_Guid() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Guid).TypeHandle);
+        private void StaticInitializer_49_Icon() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Drawing.Icon).TypeHandle);
+        private void StaticInitializer_50_MarshalByRefObject() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.MarshalByRefObject).TypeHandle);
+        private void StaticInitializer_52_TrayIconView() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::WinPaperWalls.TrayIconView).TypeHandle);
+        private void StaticInitializer_54_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_55_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -352,7 +430,7 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_28_IList(object instance, object item)
+        private void VectorAdd_55_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -390,22 +468,268 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 4:   //  WinPaperWalls.MainWindow
+            case 4:   //  Microsoft.UI.Xaml.Controls.InfoBar
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_4_InfoBar;
+                userType.StaticInitializer = StaticInitializer_4_InfoBar;
+                userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.InfoBar.Content");
+                userType.AddMemberName("Content");
+                userType.AddMemberName("Severity");
+                userType.AddMemberName("IsOpen");
+                userType.AddMemberName("IsClosable");
+                userType.AddMemberName("Title");
+                userType.AddMemberName("Message");
+                userType.AddMemberName("ActionButton");
+                userType.AddMemberName("CloseButtonCommand");
+                userType.AddMemberName("CloseButtonCommandParameter");
+                userType.AddMemberName("CloseButtonStyle");
+                userType.AddMemberName("ContentTemplate");
+                userType.AddMemberName("IconSource");
+                userType.AddMemberName("IsIconVisible");
+                userType.AddMemberName("TemplateSettings");
+                xamlType = userType;
+                break;
+
+            case 5:   //  Microsoft.UI.Xaml.Controls.Control
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  Microsoft.UI.Xaml.Controls.InfoBarSeverity
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_6_InfoBarSeverity;
+                userType.AddEnumValue("Informational", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Informational);
+                userType.AddEnumValue("Success", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Success);
+                userType.AddEnumValue("Warning", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Warning);
+                userType.AddEnumValue("Error", global::Microsoft.UI.Xaml.Controls.InfoBarSeverity.Error);
+                xamlType = userType;
+                break;
+
+            case 7:   //  System.Enum
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
+                userType.StaticInitializer = StaticInitializer_7_Enum;
+                xamlType = userType;
+                break;
+
+            case 8:   //  System.ValueType
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_8_ValueType;
+                xamlType = userType;
+                break;
+
+            case 9:   //  String
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 10:   //  Microsoft.UI.Xaml.Controls.Primitives.ButtonBase
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 11:   //  System.Windows.Input.ICommand
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_11_ICommand;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 12:   //  Microsoft.UI.Xaml.Style
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  Microsoft.UI.Xaml.DataTemplate
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 14:   //  Microsoft.UI.Xaml.Controls.IconSource
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 15:   //  Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
+                userType.StaticInitializer = StaticInitializer_15_InfoBarTemplateSettings;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 16:   //  Microsoft.UI.Xaml.DependencyObject
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 17:   //  Microsoft.UI.Xaml.Controls.NumberBox
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_17_NumberBox;
+                userType.StaticInitializer = StaticInitializer_17_NumberBox;
+                userType.AddMemberName("Minimum");
+                userType.AddMemberName("Maximum");
+                userType.AddMemberName("Value");
+                userType.AddMemberName("SpinButtonPlacementMode");
+                userType.AddMemberName("AcceptsExpression");
+                userType.AddMemberName("Description");
+                userType.AddMemberName("Header");
+                userType.AddMemberName("HeaderTemplate");
+                userType.AddMemberName("IsWrapEnabled");
+                userType.AddMemberName("LargeChange");
+                userType.AddMemberName("NumberFormatter");
+                userType.AddMemberName("PlaceholderText");
+                userType.AddMemberName("PreventKeyboardDisplayOnProgrammaticFocus");
+                userType.AddMemberName("SelectionFlyout");
+                userType.AddMemberName("SelectionHighlightColor");
+                userType.AddMemberName("SmallChange");
+                userType.AddMemberName("Text");
+                userType.AddMemberName("TextReadingOrder");
+                userType.AddMemberName("ValidationMode");
+                xamlType = userType;
+                break;
+
+            case 18:   //  Double
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 19:   //  Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_19_NumberBoxSpinButtonPlacementMode;
+                userType.AddEnumValue("Hidden", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Hidden);
+                userType.AddEnumValue("Compact", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Compact);
+                userType.AddEnumValue("Inline", global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode.Inline);
+                xamlType = userType;
+                break;
+
+            case 20:   //  Windows.Globalization.NumberFormatting.INumberFormatter2
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, null);
+                userType.StaticInitializer = StaticInitializer_20_INumberFormatter2;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 21:   //  Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 22:   //  Microsoft.UI.Xaml.Media.SolidColorBrush
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 23:   //  Microsoft.UI.Xaml.TextReadingOrder
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 24:   //  Microsoft.UI.Xaml.Controls.NumberBoxValidationMode
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_24_NumberBoxValidationMode;
+                userType.AddEnumValue("InvalidInputOverwritten", global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode.InvalidInputOverwritten);
+                userType.AddEnumValue("Disabled", global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode.Disabled);
+                xamlType = userType;
+                break;
+
+            case 25:   //  Microsoft.UI.Xaml.Controls.ItemsRepeater
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.FrameworkElement"));
+                userType.Activator = Activate_25_ItemsRepeater;
+                userType.StaticInitializer = StaticInitializer_25_ItemsRepeater;
+                userType.SetContentPropertyName("Microsoft.UI.Xaml.Controls.ItemsRepeater.ItemTemplate");
+                userType.AddMemberName("ItemTemplate");
+                userType.AddMemberName("Layout");
+                userType.AddMemberName("Background");
+                userType.AddMemberName("HorizontalCacheLength");
+                userType.AddMemberName("ItemTransitionProvider");
+                userType.AddMemberName("ItemsSource");
+                userType.AddMemberName("ItemsSourceView");
+                userType.AddMemberName("VerticalCacheLength");
+                xamlType = userType;
+                break;
+
+            case 26:   //  Microsoft.UI.Xaml.FrameworkElement
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 27:   //  Microsoft.UI.Xaml.Controls.Layout
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
+                userType.StaticInitializer = StaticInitializer_27_Layout;
+                userType.AddMemberName("IndexBasedLayoutOrientation");
+                xamlType = userType;
+                break;
+
+            case 28:   //  Microsoft.UI.Xaml.Media.Brush
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 29:   //  Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_29_ItemCollectionTransitionProvider;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 30:   //  Microsoft.UI.Xaml.Controls.ItemsSourceView
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_30_ItemsSourceView;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 31:   //  Microsoft.UI.Xaml.Controls.StackLayout
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.VirtualizingLayout"));
+                userType.Activator = Activate_31_StackLayout;
+                userType.StaticInitializer = StaticInitializer_31_StackLayout;
+                userType.AddMemberName("Spacing");
+                userType.AddMemberName("Orientation");
+                xamlType = userType;
+                break;
+
+            case 32:   //  Microsoft.UI.Xaml.Controls.VirtualizingLayout
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Layout"));
+                userType.Activator = Activate_32_VirtualizingLayout;
+                userType.StaticInitializer = StaticInitializer_32_VirtualizingLayout;
+                xamlType = userType;
+                break;
+
+            case 33:   //  Microsoft.UI.Xaml.Controls.Orientation
+                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 34:   //  Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
+                userType.StaticInitializer = StaticInitializer_34_IndexBasedLayoutOrientation;
+                userType.AddEnumValue("None", global::Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation.None);
+                userType.AddEnumValue("TopToBottom", global::Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation.TopToBottom);
+                userType.AddEnumValue("LeftToRight", global::Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation.LeftToRight);
+                xamlType = userType;
+                break;
+
+            case 35:   //  Microsoft.UI.Xaml.Controls.ProgressRing
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_35_ProgressRing;
+                userType.StaticInitializer = StaticInitializer_35_ProgressRing;
+                userType.AddMemberName("IsActive");
+                userType.AddMemberName("IsIndeterminate");
+                userType.AddMemberName("Maximum");
+                userType.AddMemberName("Minimum");
+                userType.AddMemberName("TemplateSettings");
+                userType.AddMemberName("Value");
+                xamlType = userType;
+                break;
+
+            case 36:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
+                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
+                userType.StaticInitializer = StaticInitializer_36_ProgressRingTemplateSettings;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 37:   //  WinPaperWalls.MainWindow
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_4_MainWindow;
-                userType.StaticInitializer = StaticInitializer_4_MainWindow;
+                userType.Activator = Activate_37_MainWindow;
+                userType.StaticInitializer = StaticInitializer_37_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 5:   //  Microsoft.UI.Xaml.Window
+            case 38:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 6:   //  H.NotifyIcon.TaskbarIcon
+            case 39:   //  H.NotifyIcon.TaskbarIcon
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.FrameworkElement"));
-                userType.Activator = Activate_6_TaskbarIcon;
-                userType.StaticInitializer = StaticInitializer_6_TaskbarIcon;
+                userType.Activator = Activate_39_TaskbarIcon;
+                userType.StaticInitializer = StaticInitializer_39_TaskbarIcon;
                 userType.AddMemberName("ToolTipText");
                 userType.AddMemberName("IconSource");
                 userType.AddMemberName("LeftClickCommand");
@@ -437,35 +761,20 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 7:   //  Microsoft.UI.Xaml.FrameworkElement
+            case 40:   //  Microsoft.UI.Xaml.Media.ImageSource
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  String
-                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 9:   //  Microsoft.UI.Xaml.Media.ImageSource
-                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 10:   //  System.Windows.Input.ICommand
-                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_10_ICommand;
-                userType.SetIsReturnTypeStub();
-                xamlType = userType;
-                break;
-
-            case 11:   //  H.NotifyIcon.Core.TrayIcon
+            case 41:   //  H.NotifyIcon.Core.TrayIcon
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_11_TrayIcon;
+                userType.StaticInitializer = StaticInitializer_41_TrayIcon;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 12:   //  H.NotifyIcon.Core.PopupActivationMode
+            case 42:   //  H.NotifyIcon.Core.PopupActivationMode
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_12_PopupActivationMode;
+                userType.StaticInitializer = StaticInitializer_42_PopupActivationMode;
                 userType.AddEnumValue("LeftClick", global::H.NotifyIcon.Core.PopupActivationMode.LeftClick);
                 userType.AddEnumValue("RightClick", global::H.NotifyIcon.Core.PopupActivationMode.RightClick);
                 userType.AddEnumValue("DoubleClick", global::H.NotifyIcon.Core.PopupActivationMode.DoubleClick);
@@ -477,91 +786,75 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 13:   //  System.Enum
-                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_13_Enum;
-                xamlType = userType;
-                break;
-
-            case 14:   //  System.ValueType
-                userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_14_ValueType;
-                xamlType = userType;
-                break;
-
-            case 15:   //  H.NotifyIcon.ContextMenuMode
+            case 43:   //  H.NotifyIcon.ContextMenuMode
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Enum"));
-                userType.StaticInitializer = StaticInitializer_15_ContextMenuMode;
+                userType.StaticInitializer = StaticInitializer_43_ContextMenuMode;
                 userType.AddEnumValue("PopupMenu", global::H.NotifyIcon.ContextMenuMode.PopupMenu);
                 userType.AddEnumValue("SecondWindow", global::H.NotifyIcon.ContextMenuMode.SecondWindow);
                 userType.AddEnumValue("ActiveWindow", global::H.NotifyIcon.ContextMenuMode.ActiveWindow);
                 xamlType = userType;
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.UIElement
+            case 44:   //  Microsoft.UI.Xaml.UIElement
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  Microsoft.UI.Xaml.Controls.Primitives.Popup
+            case 45:   //  Microsoft.UI.Xaml.Controls.Primitives.Popup
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 18:   //  Microsoft.UI.Xaml.Controls.Primitives.PlacementMode
+            case 46:   //  Microsoft.UI.Xaml.Controls.Primitives.PlacementMode
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 19:   //  Microsoft.UI.Xaml.Thickness
+            case 47:   //  Microsoft.UI.Xaml.Thickness
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_19_Thickness;
+                userType.StaticInitializer = StaticInitializer_47_Thickness;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 20:   //  Guid
+            case 48:   //  Guid
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.ValueType"));
-                userType.StaticInitializer = StaticInitializer_20_Guid;
+                userType.StaticInitializer = StaticInitializer_48_Guid;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 21:   //  System.Drawing.Icon
+            case 49:   //  System.Drawing.Icon
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.MarshalByRefObject"));
-                userType.StaticInitializer = StaticInitializer_21_Icon;
+                userType.StaticInitializer = StaticInitializer_49_Icon;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 22:   //  System.MarshalByRefObject
+            case 50:   //  System.MarshalByRefObject
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.StaticInitializer = StaticInitializer_22_MarshalByRefObject;
+                userType.StaticInitializer = StaticInitializer_50_MarshalByRefObject;
                 xamlType = userType;
                 break;
 
-            case 23:   //  Microsoft.UI.Xaml.Controls.ToolTip
+            case 51:   //  Microsoft.UI.Xaml.Controls.ToolTip
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 24:   //  Microsoft.UI.Xaml.DependencyObject
-                xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 25:   //  WinPaperWalls.TrayIconView
+            case 52:   //  WinPaperWalls.TrayIconView
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_25_TrayIconView;
-                userType.StaticInitializer = StaticInitializer_25_TrayIconView;
+                userType.Activator = Activate_52_TrayIconView;
+                userType.StaticInitializer = StaticInitializer_52_TrayIconView;
                 userType.AddMemberName("ShowSettingsCommand");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 26:   //  Microsoft.UI.Xaml.Controls.UserControl
+            case 53:   //  Microsoft.UI.Xaml.Controls.UserControl
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 27:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 54:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_27_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_27_TreeViewNode;
+                userType.Activator = Activate_54_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_54_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -573,15 +866,15 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 28:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 55:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_28_IList;
-                userType.CollectionAdd = VectorAdd_28_IList;
+                userType.StaticInitializer = StaticInitializer_55_IList;
+                userType.CollectionAdd = VectorAdd_55_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 29:   //  Int32
+            case 56:   //  Int32
                 xamlType = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -653,305 +946,785 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.XamlControlsResources)instance;
             that.UseCompactResources = (global::System.Boolean)Value;
         }
-        private object get_1_TaskbarIcon_ToolTipText(object instance)
+        private object get_1_InfoBar_Content(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.Content;
+        }
+        private void set_1_InfoBar_Content(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.Content = (global::System.Object)Value;
+        }
+        private object get_2_InfoBar_Severity(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.Severity;
+        }
+        private void set_2_InfoBar_Severity(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.Severity = (global::Microsoft.UI.Xaml.Controls.InfoBarSeverity)Value;
+        }
+        private object get_3_InfoBar_IsOpen(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.IsOpen;
+        }
+        private void set_3_InfoBar_IsOpen(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.IsOpen = (global::System.Boolean)Value;
+        }
+        private object get_4_InfoBar_IsClosable(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.IsClosable;
+        }
+        private void set_4_InfoBar_IsClosable(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.IsClosable = (global::System.Boolean)Value;
+        }
+        private object get_5_InfoBar_Title(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.Title;
+        }
+        private void set_5_InfoBar_Title(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.Title = (global::System.String)Value;
+        }
+        private object get_6_InfoBar_Message(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.Message;
+        }
+        private void set_6_InfoBar_Message(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.Message = (global::System.String)Value;
+        }
+        private object get_7_InfoBar_ActionButton(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.ActionButton;
+        }
+        private void set_7_InfoBar_ActionButton(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.ActionButton = (global::Microsoft.UI.Xaml.Controls.Primitives.ButtonBase)Value;
+        }
+        private object get_8_InfoBar_CloseButtonCommand(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.CloseButtonCommand;
+        }
+        private void set_8_InfoBar_CloseButtonCommand(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.CloseButtonCommand = (global::System.Windows.Input.ICommand)Value;
+        }
+        private object get_9_InfoBar_CloseButtonCommandParameter(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.CloseButtonCommandParameter;
+        }
+        private void set_9_InfoBar_CloseButtonCommandParameter(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.CloseButtonCommandParameter = (global::System.Object)Value;
+        }
+        private object get_10_InfoBar_CloseButtonStyle(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.CloseButtonStyle;
+        }
+        private void set_10_InfoBar_CloseButtonStyle(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.CloseButtonStyle = (global::Microsoft.UI.Xaml.Style)Value;
+        }
+        private object get_11_InfoBar_ContentTemplate(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.ContentTemplate;
+        }
+        private void set_11_InfoBar_ContentTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.ContentTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_12_InfoBar_IconSource(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.IconSource;
+        }
+        private void set_12_InfoBar_IconSource(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.IconSource = (global::Microsoft.UI.Xaml.Controls.IconSource)Value;
+        }
+        private object get_13_InfoBar_IsIconVisible(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.IsIconVisible;
+        }
+        private void set_13_InfoBar_IsIconVisible(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            that.IsIconVisible = (global::System.Boolean)Value;
+        }
+        private object get_14_InfoBar_TemplateSettings(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.InfoBar)instance;
+            return that.TemplateSettings;
+        }
+        private object get_15_NumberBox_Minimum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Minimum;
+        }
+        private void set_15_NumberBox_Minimum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Minimum = (global::System.Double)Value;
+        }
+        private object get_16_NumberBox_Maximum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Maximum;
+        }
+        private void set_16_NumberBox_Maximum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Maximum = (global::System.Double)Value;
+        }
+        private object get_17_NumberBox_Value(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Value;
+        }
+        private void set_17_NumberBox_Value(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Value = (global::System.Double)Value;
+        }
+        private object get_18_NumberBox_SpinButtonPlacementMode(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.SpinButtonPlacementMode;
+        }
+        private void set_18_NumberBox_SpinButtonPlacementMode(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.SpinButtonPlacementMode = (global::Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode)Value;
+        }
+        private object get_19_NumberBox_AcceptsExpression(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.AcceptsExpression;
+        }
+        private void set_19_NumberBox_AcceptsExpression(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.AcceptsExpression = (global::System.Boolean)Value;
+        }
+        private object get_20_NumberBox_Description(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Description;
+        }
+        private void set_20_NumberBox_Description(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Description = (global::System.Object)Value;
+        }
+        private object get_21_NumberBox_Header(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Header;
+        }
+        private void set_21_NumberBox_Header(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Header = (global::System.Object)Value;
+        }
+        private object get_22_NumberBox_HeaderTemplate(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.HeaderTemplate;
+        }
+        private void set_22_NumberBox_HeaderTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.HeaderTemplate = (global::Microsoft.UI.Xaml.DataTemplate)Value;
+        }
+        private object get_23_NumberBox_IsWrapEnabled(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.IsWrapEnabled;
+        }
+        private void set_23_NumberBox_IsWrapEnabled(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.IsWrapEnabled = (global::System.Boolean)Value;
+        }
+        private object get_24_NumberBox_LargeChange(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.LargeChange;
+        }
+        private void set_24_NumberBox_LargeChange(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.LargeChange = (global::System.Double)Value;
+        }
+        private object get_25_NumberBox_NumberFormatter(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.NumberFormatter;
+        }
+        private void set_25_NumberBox_NumberFormatter(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.NumberFormatter = (global::Windows.Globalization.NumberFormatting.INumberFormatter2)Value;
+        }
+        private object get_26_NumberBox_PlaceholderText(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.PlaceholderText;
+        }
+        private void set_26_NumberBox_PlaceholderText(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.PlaceholderText = (global::System.String)Value;
+        }
+        private object get_27_NumberBox_PreventKeyboardDisplayOnProgrammaticFocus(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.PreventKeyboardDisplayOnProgrammaticFocus;
+        }
+        private void set_27_NumberBox_PreventKeyboardDisplayOnProgrammaticFocus(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.PreventKeyboardDisplayOnProgrammaticFocus = (global::System.Boolean)Value;
+        }
+        private object get_28_NumberBox_SelectionFlyout(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.SelectionFlyout;
+        }
+        private void set_28_NumberBox_SelectionFlyout(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.SelectionFlyout = (global::Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase)Value;
+        }
+        private object get_29_NumberBox_SelectionHighlightColor(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.SelectionHighlightColor;
+        }
+        private void set_29_NumberBox_SelectionHighlightColor(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.SelectionHighlightColor = (global::Microsoft.UI.Xaml.Media.SolidColorBrush)Value;
+        }
+        private object get_30_NumberBox_SmallChange(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.SmallChange;
+        }
+        private void set_30_NumberBox_SmallChange(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.SmallChange = (global::System.Double)Value;
+        }
+        private object get_31_NumberBox_Text(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.Text;
+        }
+        private void set_31_NumberBox_Text(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.Text = (global::System.String)Value;
+        }
+        private object get_32_NumberBox_TextReadingOrder(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.TextReadingOrder;
+        }
+        private void set_32_NumberBox_TextReadingOrder(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.TextReadingOrder = (global::Microsoft.UI.Xaml.TextReadingOrder)Value;
+        }
+        private object get_33_NumberBox_ValidationMode(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            return that.ValidationMode;
+        }
+        private void set_33_NumberBox_ValidationMode(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.NumberBox)instance;
+            that.ValidationMode = (global::Microsoft.UI.Xaml.Controls.NumberBoxValidationMode)Value;
+        }
+        private object get_34_ItemsRepeater_ItemTemplate(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.ItemTemplate;
+        }
+        private void set_34_ItemsRepeater_ItemTemplate(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.ItemTemplate = (global::System.Object)Value;
+        }
+        private object get_35_ItemsRepeater_Layout(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.Layout;
+        }
+        private void set_35_ItemsRepeater_Layout(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.Layout = (global::Microsoft.UI.Xaml.Controls.Layout)Value;
+        }
+        private object get_36_ItemsRepeater_Background(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.Background;
+        }
+        private void set_36_ItemsRepeater_Background(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.Background = (global::Microsoft.UI.Xaml.Media.Brush)Value;
+        }
+        private object get_37_ItemsRepeater_HorizontalCacheLength(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.HorizontalCacheLength;
+        }
+        private void set_37_ItemsRepeater_HorizontalCacheLength(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.HorizontalCacheLength = (global::System.Double)Value;
+        }
+        private object get_38_ItemsRepeater_ItemTransitionProvider(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.ItemTransitionProvider;
+        }
+        private void set_38_ItemsRepeater_ItemTransitionProvider(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.ItemTransitionProvider = (global::Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider)Value;
+        }
+        private object get_39_ItemsRepeater_ItemsSource(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.ItemsSource;
+        }
+        private void set_39_ItemsRepeater_ItemsSource(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.ItemsSource = (global::System.Object)Value;
+        }
+        private object get_40_ItemsRepeater_ItemsSourceView(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.ItemsSourceView;
+        }
+        private object get_41_ItemsRepeater_VerticalCacheLength(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            return that.VerticalCacheLength;
+        }
+        private void set_41_ItemsRepeater_VerticalCacheLength(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ItemsRepeater)instance;
+            that.VerticalCacheLength = (global::System.Double)Value;
+        }
+        private object get_42_StackLayout_Spacing(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.StackLayout)instance;
+            return that.Spacing;
+        }
+        private void set_42_StackLayout_Spacing(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.StackLayout)instance;
+            that.Spacing = (global::System.Double)Value;
+        }
+        private object get_43_StackLayout_Orientation(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.StackLayout)instance;
+            return that.Orientation;
+        }
+        private void set_43_StackLayout_Orientation(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.StackLayout)instance;
+            that.Orientation = (global::Microsoft.UI.Xaml.Controls.Orientation)Value;
+        }
+        private object get_44_Layout_IndexBasedLayoutOrientation(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.Layout)instance;
+            return that.IndexBasedLayoutOrientation;
+        }
+        private object get_45_ProgressRing_IsActive(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.IsActive;
+        }
+        private void set_45_ProgressRing_IsActive(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.IsActive = (global::System.Boolean)Value;
+        }
+        private object get_46_ProgressRing_IsIndeterminate(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.IsIndeterminate;
+        }
+        private void set_46_ProgressRing_IsIndeterminate(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.IsIndeterminate = (global::System.Boolean)Value;
+        }
+        private object get_47_ProgressRing_Maximum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Maximum;
+        }
+        private void set_47_ProgressRing_Maximum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Maximum = (global::System.Double)Value;
+        }
+        private object get_48_ProgressRing_Minimum(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Minimum;
+        }
+        private void set_48_ProgressRing_Minimum(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Minimum = (global::System.Double)Value;
+        }
+        private object get_49_ProgressRing_TemplateSettings(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.TemplateSettings;
+        }
+        private object get_50_ProgressRing_Value(object instance)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            return that.Value;
+        }
+        private void set_50_ProgressRing_Value(object instance, object Value)
+        {
+            var that = (global::Microsoft.UI.Xaml.Controls.ProgressRing)instance;
+            that.Value = (global::System.Double)Value;
+        }
+        private object get_51_TaskbarIcon_ToolTipText(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.ToolTipText;
         }
-        private void set_1_TaskbarIcon_ToolTipText(object instance, object Value)
+        private void set_51_TaskbarIcon_ToolTipText(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.ToolTipText = (global::System.String)Value;
         }
-        private object get_2_TaskbarIcon_IconSource(object instance)
+        private object get_52_TaskbarIcon_IconSource(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.IconSource;
         }
-        private void set_2_TaskbarIcon_IconSource(object instance, object Value)
+        private void set_52_TaskbarIcon_IconSource(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.IconSource = (global::Microsoft.UI.Xaml.Media.ImageSource)Value;
         }
-        private object get_3_TaskbarIcon_LeftClickCommand(object instance)
+        private object get_53_TaskbarIcon_LeftClickCommand(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.LeftClickCommand;
         }
-        private void set_3_TaskbarIcon_LeftClickCommand(object instance, object Value)
+        private void set_53_TaskbarIcon_LeftClickCommand(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.LeftClickCommand = (global::System.Windows.Input.ICommand)Value;
         }
-        private object get_4_TaskbarIcon_DoubleClickCommand(object instance)
+        private object get_54_TaskbarIcon_DoubleClickCommand(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.DoubleClickCommand;
         }
-        private void set_4_TaskbarIcon_DoubleClickCommand(object instance, object Value)
+        private void set_54_TaskbarIcon_DoubleClickCommand(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.DoubleClickCommand = (global::System.Windows.Input.ICommand)Value;
         }
-        private object get_5_TaskbarIcon_TrayIcon(object instance)
+        private object get_55_TaskbarIcon_TrayIcon(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.TrayIcon;
         }
-        private object get_6_TaskbarIcon_IsCreated(object instance)
+        private object get_56_TaskbarIcon_IsCreated(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.IsCreated;
         }
-        private object get_7_TaskbarIcon_IsDisposed(object instance)
+        private object get_57_TaskbarIcon_IsDisposed(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.IsDisposed;
         }
-        private object get_8_TaskbarIcon_SupportsCustomToolTips(object instance)
+        private object get_58_TaskbarIcon_SupportsCustomToolTips(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.SupportsCustomToolTips;
         }
-        private object get_9_TaskbarIcon_NoLeftClickDelay(object instance)
+        private object get_59_TaskbarIcon_NoLeftClickDelay(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.NoLeftClickDelay;
         }
-        private void set_9_TaskbarIcon_NoLeftClickDelay(object instance, object Value)
+        private void set_59_TaskbarIcon_NoLeftClickDelay(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.NoLeftClickDelay = (global::System.Boolean)Value;
         }
-        private object get_10_TaskbarIcon_DoubleClickCommandParameter(object instance)
+        private object get_60_TaskbarIcon_DoubleClickCommandParameter(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.DoubleClickCommandParameter;
         }
-        private void set_10_TaskbarIcon_DoubleClickCommandParameter(object instance, object Value)
+        private void set_60_TaskbarIcon_DoubleClickCommandParameter(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.DoubleClickCommandParameter = (global::System.Object)Value;
         }
-        private object get_11_TaskbarIcon_LeftClickCommandParameter(object instance)
+        private object get_61_TaskbarIcon_LeftClickCommandParameter(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.LeftClickCommandParameter;
         }
-        private void set_11_TaskbarIcon_LeftClickCommandParameter(object instance, object Value)
+        private void set_61_TaskbarIcon_LeftClickCommandParameter(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.LeftClickCommandParameter = (global::System.Object)Value;
         }
-        private object get_12_TaskbarIcon_RightClickCommand(object instance)
+        private object get_62_TaskbarIcon_RightClickCommand(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.RightClickCommand;
         }
-        private void set_12_TaskbarIcon_RightClickCommand(object instance, object Value)
+        private void set_62_TaskbarIcon_RightClickCommand(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.RightClickCommand = (global::System.Windows.Input.ICommand)Value;
         }
-        private object get_13_TaskbarIcon_RightClickCommandParameter(object instance)
+        private object get_63_TaskbarIcon_RightClickCommandParameter(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.RightClickCommandParameter;
         }
-        private void set_13_TaskbarIcon_RightClickCommandParameter(object instance, object Value)
+        private void set_63_TaskbarIcon_RightClickCommandParameter(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.RightClickCommandParameter = (global::System.Object)Value;
         }
-        private object get_14_TaskbarIcon_MiddleClickCommand(object instance)
+        private object get_64_TaskbarIcon_MiddleClickCommand(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.MiddleClickCommand;
         }
-        private void set_14_TaskbarIcon_MiddleClickCommand(object instance, object Value)
+        private void set_64_TaskbarIcon_MiddleClickCommand(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.MiddleClickCommand = (global::System.Windows.Input.ICommand)Value;
         }
-        private object get_15_TaskbarIcon_MiddleClickCommandParameter(object instance)
+        private object get_65_TaskbarIcon_MiddleClickCommandParameter(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.MiddleClickCommandParameter;
         }
-        private void set_15_TaskbarIcon_MiddleClickCommandParameter(object instance, object Value)
+        private void set_65_TaskbarIcon_MiddleClickCommandParameter(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.MiddleClickCommandParameter = (global::System.Object)Value;
         }
-        private object get_16_TaskbarIcon_MenuActivation(object instance)
+        private object get_66_TaskbarIcon_MenuActivation(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.MenuActivation;
         }
-        private void set_16_TaskbarIcon_MenuActivation(object instance, object Value)
+        private void set_66_TaskbarIcon_MenuActivation(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.MenuActivation = (global::H.NotifyIcon.Core.PopupActivationMode)Value;
         }
-        private object get_17_TaskbarIcon_ContextMenuMode(object instance)
+        private object get_67_TaskbarIcon_ContextMenuMode(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.ContextMenuMode;
         }
-        private void set_17_TaskbarIcon_ContextMenuMode(object instance, object Value)
+        private void set_67_TaskbarIcon_ContextMenuMode(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.ContextMenuMode = (global::H.NotifyIcon.ContextMenuMode)Value;
         }
-        private object get_18_TaskbarIcon_PopupActivation(object instance)
+        private object get_68_TaskbarIcon_PopupActivation(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.PopupActivation;
         }
-        private void set_18_TaskbarIcon_PopupActivation(object instance, object Value)
+        private void set_68_TaskbarIcon_PopupActivation(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.PopupActivation = (global::H.NotifyIcon.Core.PopupActivationMode)Value;
         }
-        private object get_19_TaskbarIcon_TrayPopup(object instance)
+        private object get_69_TaskbarIcon_TrayPopup(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.TrayPopup;
         }
-        private void set_19_TaskbarIcon_TrayPopup(object instance, object Value)
+        private void set_69_TaskbarIcon_TrayPopup(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.TrayPopup = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_20_TaskbarIcon_TrayPopupResolved(object instance)
+        private object get_70_TaskbarIcon_TrayPopupResolved(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.TrayPopupResolved;
         }
-        private object get_21_TaskbarIcon_PopupPlacement(object instance)
+        private object get_71_TaskbarIcon_PopupPlacement(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.PopupPlacement;
         }
-        private void set_21_TaskbarIcon_PopupPlacement(object instance, object Value)
+        private void set_71_TaskbarIcon_PopupPlacement(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.PopupPlacement = (global::Microsoft.UI.Xaml.Controls.Primitives.PlacementMode)Value;
         }
-        private object get_22_TaskbarIcon_PopupOffset(object instance)
+        private object get_72_TaskbarIcon_PopupOffset(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.PopupOffset;
         }
-        private void set_22_TaskbarIcon_PopupOffset(object instance, object Value)
+        private void set_72_TaskbarIcon_PopupOffset(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.PopupOffset = (global::Microsoft.UI.Xaml.Thickness)Value;
         }
-        private object get_23_TaskbarIcon_Id(object instance)
+        private object get_73_TaskbarIcon_Id(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.Id;
         }
-        private void set_23_TaskbarIcon_Id(object instance, object Value)
+        private void set_73_TaskbarIcon_Id(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.Id = (global::System.Guid)Value;
         }
-        private object get_24_TaskbarIcon_CustomName(object instance)
+        private object get_74_TaskbarIcon_CustomName(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.CustomName;
         }
-        private void set_24_TaskbarIcon_CustomName(object instance, object Value)
+        private void set_74_TaskbarIcon_CustomName(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.CustomName = (global::System.String)Value;
         }
-        private object get_25_TaskbarIcon_Icon(object instance)
+        private object get_75_TaskbarIcon_Icon(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.Icon;
         }
-        private void set_25_TaskbarIcon_Icon(object instance, object Value)
+        private void set_75_TaskbarIcon_Icon(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.Icon = (global::System.Drawing.Icon)Value;
         }
-        private object get_26_TaskbarIcon_TrayToolTip(object instance)
+        private object get_76_TaskbarIcon_TrayToolTip(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.TrayToolTip;
         }
-        private void set_26_TaskbarIcon_TrayToolTip(object instance, object Value)
+        private void set_76_TaskbarIcon_TrayToolTip(object instance, object Value)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             that.TrayToolTip = (global::Microsoft.UI.Xaml.UIElement)Value;
         }
-        private object get_27_TaskbarIcon_TrayToolTipResolved(object instance)
+        private object get_77_TaskbarIcon_TrayToolTipResolved(object instance)
         {
             var that = (global::H.NotifyIcon.TaskbarIcon)instance;
             return that.TrayToolTipResolved;
         }
-        private object get_28_TaskbarIcon_ParentTaskbarIcon(object instance)
+        private object get_78_TaskbarIcon_ParentTaskbarIcon(object instance)
         {
             return global::H.NotifyIcon.TaskbarIcon.GetParentTaskbarIcon((global::Microsoft.UI.Xaml.DependencyObject)instance);
         }
-        private void set_28_TaskbarIcon_ParentTaskbarIcon(object instance, object Value)
+        private void set_78_TaskbarIcon_ParentTaskbarIcon(object instance, object Value)
         {
             global::H.NotifyIcon.TaskbarIcon.SetParentTaskbarIcon((global::Microsoft.UI.Xaml.DependencyObject)instance, (global::H.NotifyIcon.TaskbarIcon)Value);
         }
-        private object get_29_TrayIconView_ShowSettingsCommand(object instance)
+        private object get_79_TrayIconView_ShowSettingsCommand(object instance)
         {
             var that = (global::WinPaperWalls.TrayIconView)instance;
             return that.ShowSettingsCommand;
         }
-        private object get_30_TreeViewNode_Children(object instance)
+        private object get_80_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_31_TreeViewNode_Content(object instance)
+        private object get_81_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_31_TreeViewNode_Content(object instance, object Value)
+        private void set_81_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_32_TreeViewNode_Depth(object instance)
+        private object get_82_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_33_TreeViewNode_HasChildren(object instance)
+        private object get_83_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_34_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_84_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_34_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_84_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_35_TreeViewNode_IsExpanded(object instance)
+        private object get_85_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_35_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_85_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_36_TreeViewNode_Parent(object instance)
+        private object get_86_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -971,189 +1744,536 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
                 break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Content":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Content", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_1_InfoBar_Content;
+                xamlMember.Setter = set_1_InfoBar_Content;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Severity":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Severity", "Microsoft.UI.Xaml.Controls.InfoBarSeverity");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_2_InfoBar_Severity;
+                xamlMember.Setter = set_2_InfoBar_Severity;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsOpen":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsOpen", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_3_InfoBar_IsOpen;
+                xamlMember.Setter = set_3_InfoBar_IsOpen;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsClosable":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsClosable", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_4_InfoBar_IsClosable;
+                xamlMember.Setter = set_4_InfoBar_IsClosable;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Title":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_5_InfoBar_Title;
+                xamlMember.Setter = set_5_InfoBar_Title;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.Message":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Message", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_6_InfoBar_Message;
+                xamlMember.Setter = set_6_InfoBar_Message;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.ActionButton":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ActionButton", "Microsoft.UI.Xaml.Controls.Primitives.ButtonBase");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_7_InfoBar_ActionButton;
+                xamlMember.Setter = set_7_InfoBar_ActionButton;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommand":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "CloseButtonCommand", "System.Windows.Input.ICommand");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_8_InfoBar_CloseButtonCommand;
+                xamlMember.Setter = set_8_InfoBar_CloseButtonCommand;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonCommandParameter":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "CloseButtonCommandParameter", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_9_InfoBar_CloseButtonCommandParameter;
+                xamlMember.Setter = set_9_InfoBar_CloseButtonCommandParameter;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.CloseButtonStyle":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "CloseButtonStyle", "Microsoft.UI.Xaml.Style");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_10_InfoBar_CloseButtonStyle;
+                xamlMember.Setter = set_10_InfoBar_CloseButtonStyle;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.ContentTemplate":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ContentTemplate", "Microsoft.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_11_InfoBar_ContentTemplate;
+                xamlMember.Setter = set_11_InfoBar_ContentTemplate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IconSource":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IconSource", "Microsoft.UI.Xaml.Controls.IconSource");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_12_InfoBar_IconSource;
+                xamlMember.Setter = set_12_InfoBar_IconSource;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.IsIconVisible":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsIconVisible", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_13_InfoBar_IsIconVisible;
+                xamlMember.Setter = set_13_InfoBar_IsIconVisible;
+                break;
+            case "Microsoft.UI.Xaml.Controls.InfoBar.TemplateSettings":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.InfoBar");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.InfoBarTemplateSettings");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_14_InfoBar_TemplateSettings;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Minimum":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Minimum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_15_NumberBox_Minimum;
+                xamlMember.Setter = set_15_NumberBox_Minimum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Maximum":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Maximum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_16_NumberBox_Maximum;
+                xamlMember.Setter = set_16_NumberBox_Maximum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Value":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Value", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_17_NumberBox_Value;
+                xamlMember.Setter = set_17_NumberBox_Value;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.SpinButtonPlacementMode":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "SpinButtonPlacementMode", "Microsoft.UI.Xaml.Controls.NumberBoxSpinButtonPlacementMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_18_NumberBox_SpinButtonPlacementMode;
+                xamlMember.Setter = set_18_NumberBox_SpinButtonPlacementMode;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.AcceptsExpression":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "AcceptsExpression", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_19_NumberBox_AcceptsExpression;
+                xamlMember.Setter = set_19_NumberBox_AcceptsExpression;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Description":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Description", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_20_NumberBox_Description;
+                xamlMember.Setter = set_20_NumberBox_Description;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Header":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Header", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_21_NumberBox_Header;
+                xamlMember.Setter = set_21_NumberBox_Header;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.HeaderTemplate":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "HeaderTemplate", "Microsoft.UI.Xaml.DataTemplate");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_22_NumberBox_HeaderTemplate;
+                xamlMember.Setter = set_22_NumberBox_HeaderTemplate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.IsWrapEnabled":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsWrapEnabled", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_23_NumberBox_IsWrapEnabled;
+                xamlMember.Setter = set_23_NumberBox_IsWrapEnabled;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.LargeChange":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "LargeChange", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_24_NumberBox_LargeChange;
+                xamlMember.Setter = set_24_NumberBox_LargeChange;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.NumberFormatter":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "NumberFormatter", "Windows.Globalization.NumberFormatting.INumberFormatter2");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_25_NumberBox_NumberFormatter;
+                xamlMember.Setter = set_25_NumberBox_NumberFormatter;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.PlaceholderText":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "PlaceholderText", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_26_NumberBox_PlaceholderText;
+                xamlMember.Setter = set_26_NumberBox_PlaceholderText;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.PreventKeyboardDisplayOnProgrammaticFocus":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "PreventKeyboardDisplayOnProgrammaticFocus", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_27_NumberBox_PreventKeyboardDisplayOnProgrammaticFocus;
+                xamlMember.Setter = set_27_NumberBox_PreventKeyboardDisplayOnProgrammaticFocus;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.SelectionFlyout":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "SelectionFlyout", "Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_28_NumberBox_SelectionFlyout;
+                xamlMember.Setter = set_28_NumberBox_SelectionFlyout;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.SelectionHighlightColor":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "SelectionHighlightColor", "Microsoft.UI.Xaml.Media.SolidColorBrush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_29_NumberBox_SelectionHighlightColor;
+                xamlMember.Setter = set_29_NumberBox_SelectionHighlightColor;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.SmallChange":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "SmallChange", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_30_NumberBox_SmallChange;
+                xamlMember.Setter = set_30_NumberBox_SmallChange;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.Text":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Text", "String");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_31_NumberBox_Text;
+                xamlMember.Setter = set_31_NumberBox_Text;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.TextReadingOrder":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TextReadingOrder", "Microsoft.UI.Xaml.TextReadingOrder");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_32_NumberBox_TextReadingOrder;
+                xamlMember.Setter = set_32_NumberBox_TextReadingOrder;
+                break;
+            case "Microsoft.UI.Xaml.Controls.NumberBox.ValidationMode":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.NumberBox");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ValidationMode", "Microsoft.UI.Xaml.Controls.NumberBoxValidationMode");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_33_NumberBox_ValidationMode;
+                xamlMember.Setter = set_33_NumberBox_ValidationMode;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.ItemTemplate":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ItemTemplate", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_34_ItemsRepeater_ItemTemplate;
+                xamlMember.Setter = set_34_ItemsRepeater_ItemTemplate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.Layout":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Layout", "Microsoft.UI.Xaml.Controls.Layout");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_35_ItemsRepeater_Layout;
+                xamlMember.Setter = set_35_ItemsRepeater_Layout;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.Background":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Background", "Microsoft.UI.Xaml.Media.Brush");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_36_ItemsRepeater_Background;
+                xamlMember.Setter = set_36_ItemsRepeater_Background;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.HorizontalCacheLength":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "HorizontalCacheLength", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_37_ItemsRepeater_HorizontalCacheLength;
+                xamlMember.Setter = set_37_ItemsRepeater_HorizontalCacheLength;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.ItemTransitionProvider":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ItemTransitionProvider", "Microsoft.UI.Xaml.Controls.ItemCollectionTransitionProvider");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_38_ItemsRepeater_ItemTransitionProvider;
+                xamlMember.Setter = set_38_ItemsRepeater_ItemTransitionProvider;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.ItemsSource":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ItemsSource", "Object");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_39_ItemsRepeater_ItemsSource;
+                xamlMember.Setter = set_39_ItemsRepeater_ItemsSource;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.ItemsSourceView":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ItemsSourceView", "Microsoft.UI.Xaml.Controls.ItemsSourceView");
+                xamlMember.Getter = get_40_ItemsRepeater_ItemsSourceView;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.UI.Xaml.Controls.ItemsRepeater.VerticalCacheLength":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ItemsRepeater");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "VerticalCacheLength", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_41_ItemsRepeater_VerticalCacheLength;
+                xamlMember.Setter = set_41_ItemsRepeater_VerticalCacheLength;
+                break;
+            case "Microsoft.UI.Xaml.Controls.StackLayout.Spacing":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.StackLayout");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Spacing", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_42_StackLayout_Spacing;
+                xamlMember.Setter = set_42_StackLayout_Spacing;
+                break;
+            case "Microsoft.UI.Xaml.Controls.StackLayout.Orientation":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.StackLayout");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Orientation", "Microsoft.UI.Xaml.Controls.Orientation");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_43_StackLayout_Orientation;
+                xamlMember.Setter = set_43_StackLayout_Orientation;
+                break;
+            case "Microsoft.UI.Xaml.Controls.Layout.IndexBasedLayoutOrientation":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Layout");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IndexBasedLayoutOrientation", "Microsoft.UI.Xaml.Controls.IndexBasedLayoutOrientation");
+                xamlMember.Getter = get_44_Layout_IndexBasedLayoutOrientation;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.IsActive":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsActive", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_45_ProgressRing_IsActive;
+                xamlMember.Setter = set_45_ProgressRing_IsActive;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.IsIndeterminate":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsIndeterminate", "Boolean");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_46_ProgressRing_IsIndeterminate;
+                xamlMember.Setter = set_46_ProgressRing_IsIndeterminate;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Maximum":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Maximum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_47_ProgressRing_Maximum;
+                xamlMember.Setter = set_47_ProgressRing_Maximum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Minimum":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Minimum", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_48_ProgressRing_Minimum;
+                xamlMember.Setter = set_48_ProgressRing_Minimum;
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.TemplateSettings":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TemplateSettings", "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings");
+                xamlMember.Getter = get_49_ProgressRing_TemplateSettings;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Microsoft.UI.Xaml.Controls.ProgressRing.Value":
+                userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.ProgressRing");
+                xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Value", "Double");
+                xamlMember.SetIsDependencyProperty();
+                xamlMember.Getter = get_50_ProgressRing_Value;
+                xamlMember.Setter = set_50_ProgressRing_Value;
+                break;
             case "H.NotifyIcon.TaskbarIcon.ToolTipText":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ToolTipText", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_1_TaskbarIcon_ToolTipText;
-                xamlMember.Setter = set_1_TaskbarIcon_ToolTipText;
+                xamlMember.Getter = get_51_TaskbarIcon_ToolTipText;
+                xamlMember.Setter = set_51_TaskbarIcon_ToolTipText;
                 break;
             case "H.NotifyIcon.TaskbarIcon.IconSource":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IconSource", "Microsoft.UI.Xaml.Media.ImageSource");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_TaskbarIcon_IconSource;
-                xamlMember.Setter = set_2_TaskbarIcon_IconSource;
+                xamlMember.Getter = get_52_TaskbarIcon_IconSource;
+                xamlMember.Setter = set_52_TaskbarIcon_IconSource;
                 break;
             case "H.NotifyIcon.TaskbarIcon.LeftClickCommand":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "LeftClickCommand", "System.Windows.Input.ICommand");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_3_TaskbarIcon_LeftClickCommand;
-                xamlMember.Setter = set_3_TaskbarIcon_LeftClickCommand;
+                xamlMember.Getter = get_53_TaskbarIcon_LeftClickCommand;
+                xamlMember.Setter = set_53_TaskbarIcon_LeftClickCommand;
                 break;
             case "H.NotifyIcon.TaskbarIcon.DoubleClickCommand":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "DoubleClickCommand", "System.Windows.Input.ICommand");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_4_TaskbarIcon_DoubleClickCommand;
-                xamlMember.Setter = set_4_TaskbarIcon_DoubleClickCommand;
+                xamlMember.Getter = get_54_TaskbarIcon_DoubleClickCommand;
+                xamlMember.Setter = set_54_TaskbarIcon_DoubleClickCommand;
                 break;
             case "H.NotifyIcon.TaskbarIcon.TrayIcon":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TrayIcon", "H.NotifyIcon.Core.TrayIcon");
-                xamlMember.Getter = get_5_TaskbarIcon_TrayIcon;
+                xamlMember.Getter = get_55_TaskbarIcon_TrayIcon;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.IsCreated":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsCreated", "Boolean");
-                xamlMember.Getter = get_6_TaskbarIcon_IsCreated;
+                xamlMember.Getter = get_56_TaskbarIcon_IsCreated;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.IsDisposed":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsDisposed", "Boolean");
-                xamlMember.Getter = get_7_TaskbarIcon_IsDisposed;
+                xamlMember.Getter = get_57_TaskbarIcon_IsDisposed;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.SupportsCustomToolTips":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "SupportsCustomToolTips", "Boolean");
-                xamlMember.Getter = get_8_TaskbarIcon_SupportsCustomToolTips;
+                xamlMember.Getter = get_58_TaskbarIcon_SupportsCustomToolTips;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.NoLeftClickDelay":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "NoLeftClickDelay", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_9_TaskbarIcon_NoLeftClickDelay;
-                xamlMember.Setter = set_9_TaskbarIcon_NoLeftClickDelay;
+                xamlMember.Getter = get_59_TaskbarIcon_NoLeftClickDelay;
+                xamlMember.Setter = set_59_TaskbarIcon_NoLeftClickDelay;
                 break;
             case "H.NotifyIcon.TaskbarIcon.DoubleClickCommandParameter":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "DoubleClickCommandParameter", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_10_TaskbarIcon_DoubleClickCommandParameter;
-                xamlMember.Setter = set_10_TaskbarIcon_DoubleClickCommandParameter;
+                xamlMember.Getter = get_60_TaskbarIcon_DoubleClickCommandParameter;
+                xamlMember.Setter = set_60_TaskbarIcon_DoubleClickCommandParameter;
                 break;
             case "H.NotifyIcon.TaskbarIcon.LeftClickCommandParameter":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "LeftClickCommandParameter", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_11_TaskbarIcon_LeftClickCommandParameter;
-                xamlMember.Setter = set_11_TaskbarIcon_LeftClickCommandParameter;
+                xamlMember.Getter = get_61_TaskbarIcon_LeftClickCommandParameter;
+                xamlMember.Setter = set_61_TaskbarIcon_LeftClickCommandParameter;
                 break;
             case "H.NotifyIcon.TaskbarIcon.RightClickCommand":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "RightClickCommand", "System.Windows.Input.ICommand");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_12_TaskbarIcon_RightClickCommand;
-                xamlMember.Setter = set_12_TaskbarIcon_RightClickCommand;
+                xamlMember.Getter = get_62_TaskbarIcon_RightClickCommand;
+                xamlMember.Setter = set_62_TaskbarIcon_RightClickCommand;
                 break;
             case "H.NotifyIcon.TaskbarIcon.RightClickCommandParameter":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "RightClickCommandParameter", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_13_TaskbarIcon_RightClickCommandParameter;
-                xamlMember.Setter = set_13_TaskbarIcon_RightClickCommandParameter;
+                xamlMember.Getter = get_63_TaskbarIcon_RightClickCommandParameter;
+                xamlMember.Setter = set_63_TaskbarIcon_RightClickCommandParameter;
                 break;
             case "H.NotifyIcon.TaskbarIcon.MiddleClickCommand":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "MiddleClickCommand", "System.Windows.Input.ICommand");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_14_TaskbarIcon_MiddleClickCommand;
-                xamlMember.Setter = set_14_TaskbarIcon_MiddleClickCommand;
+                xamlMember.Getter = get_64_TaskbarIcon_MiddleClickCommand;
+                xamlMember.Setter = set_64_TaskbarIcon_MiddleClickCommand;
                 break;
             case "H.NotifyIcon.TaskbarIcon.MiddleClickCommandParameter":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "MiddleClickCommandParameter", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_15_TaskbarIcon_MiddleClickCommandParameter;
-                xamlMember.Setter = set_15_TaskbarIcon_MiddleClickCommandParameter;
+                xamlMember.Getter = get_65_TaskbarIcon_MiddleClickCommandParameter;
+                xamlMember.Setter = set_65_TaskbarIcon_MiddleClickCommandParameter;
                 break;
             case "H.NotifyIcon.TaskbarIcon.MenuActivation":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "MenuActivation", "H.NotifyIcon.Core.PopupActivationMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_16_TaskbarIcon_MenuActivation;
-                xamlMember.Setter = set_16_TaskbarIcon_MenuActivation;
+                xamlMember.Getter = get_66_TaskbarIcon_MenuActivation;
+                xamlMember.Setter = set_66_TaskbarIcon_MenuActivation;
                 break;
             case "H.NotifyIcon.TaskbarIcon.ContextMenuMode":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ContextMenuMode", "H.NotifyIcon.ContextMenuMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_17_TaskbarIcon_ContextMenuMode;
-                xamlMember.Setter = set_17_TaskbarIcon_ContextMenuMode;
+                xamlMember.Getter = get_67_TaskbarIcon_ContextMenuMode;
+                xamlMember.Setter = set_67_TaskbarIcon_ContextMenuMode;
                 break;
             case "H.NotifyIcon.TaskbarIcon.PopupActivation":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "PopupActivation", "H.NotifyIcon.Core.PopupActivationMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_18_TaskbarIcon_PopupActivation;
-                xamlMember.Setter = set_18_TaskbarIcon_PopupActivation;
+                xamlMember.Getter = get_68_TaskbarIcon_PopupActivation;
+                xamlMember.Setter = set_68_TaskbarIcon_PopupActivation;
                 break;
             case "H.NotifyIcon.TaskbarIcon.TrayPopup":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TrayPopup", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_19_TaskbarIcon_TrayPopup;
-                xamlMember.Setter = set_19_TaskbarIcon_TrayPopup;
+                xamlMember.Getter = get_69_TaskbarIcon_TrayPopup;
+                xamlMember.Setter = set_69_TaskbarIcon_TrayPopup;
                 break;
             case "H.NotifyIcon.TaskbarIcon.TrayPopupResolved":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TrayPopupResolved", "Microsoft.UI.Xaml.Controls.Primitives.Popup");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_20_TaskbarIcon_TrayPopupResolved;
+                xamlMember.Getter = get_70_TaskbarIcon_TrayPopupResolved;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.PopupPlacement":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "PopupPlacement", "Microsoft.UI.Xaml.Controls.Primitives.PlacementMode");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_21_TaskbarIcon_PopupPlacement;
-                xamlMember.Setter = set_21_TaskbarIcon_PopupPlacement;
+                xamlMember.Getter = get_71_TaskbarIcon_PopupPlacement;
+                xamlMember.Setter = set_71_TaskbarIcon_PopupPlacement;
                 break;
             case "H.NotifyIcon.TaskbarIcon.PopupOffset":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "PopupOffset", "Microsoft.UI.Xaml.Thickness");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_22_TaskbarIcon_PopupOffset;
-                xamlMember.Setter = set_22_TaskbarIcon_PopupOffset;
+                xamlMember.Getter = get_72_TaskbarIcon_PopupOffset;
+                xamlMember.Setter = set_72_TaskbarIcon_PopupOffset;
                 break;
             case "H.NotifyIcon.TaskbarIcon.Id":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Id", "Guid");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_23_TaskbarIcon_Id;
-                xamlMember.Setter = set_23_TaskbarIcon_Id;
+                xamlMember.Getter = get_73_TaskbarIcon_Id;
+                xamlMember.Setter = set_73_TaskbarIcon_Id;
                 break;
             case "H.NotifyIcon.TaskbarIcon.CustomName":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "CustomName", "String");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_24_TaskbarIcon_CustomName;
-                xamlMember.Setter = set_24_TaskbarIcon_CustomName;
+                xamlMember.Getter = get_74_TaskbarIcon_CustomName;
+                xamlMember.Setter = set_74_TaskbarIcon_CustomName;
                 break;
             case "H.NotifyIcon.TaskbarIcon.Icon":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Icon", "System.Drawing.Icon");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_25_TaskbarIcon_Icon;
-                xamlMember.Setter = set_25_TaskbarIcon_Icon;
+                xamlMember.Getter = get_75_TaskbarIcon_Icon;
+                xamlMember.Setter = set_75_TaskbarIcon_Icon;
                 break;
             case "H.NotifyIcon.TaskbarIcon.TrayToolTip":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TrayToolTip", "Microsoft.UI.Xaml.UIElement");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_26_TaskbarIcon_TrayToolTip;
-                xamlMember.Setter = set_26_TaskbarIcon_TrayToolTip;
+                xamlMember.Getter = get_76_TaskbarIcon_TrayToolTip;
+                xamlMember.Setter = set_76_TaskbarIcon_TrayToolTip;
                 break;
             case "H.NotifyIcon.TaskbarIcon.TrayToolTipResolved":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("H.NotifyIcon.TaskbarIcon");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "TrayToolTipResolved", "Microsoft.UI.Xaml.Controls.ToolTip");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_27_TaskbarIcon_TrayToolTipResolved;
+                xamlMember.Getter = get_77_TaskbarIcon_TrayToolTipResolved;
                 xamlMember.SetIsReadOnly();
                 break;
             case "H.NotifyIcon.TaskbarIcon.ParentTaskbarIcon":
@@ -1162,59 +2282,59 @@ namespace WinPaperWalls.WinPaperWalls_XamlTypeInfo
                 xamlMember.SetTargetTypeName("Microsoft.UI.Xaml.DependencyObject");
                 xamlMember.SetIsDependencyProperty();
                 xamlMember.SetIsAttachable();
-                xamlMember.Getter = get_28_TaskbarIcon_ParentTaskbarIcon;
-                xamlMember.Setter = set_28_TaskbarIcon_ParentTaskbarIcon;
+                xamlMember.Getter = get_78_TaskbarIcon_ParentTaskbarIcon;
+                xamlMember.Setter = set_78_TaskbarIcon_ParentTaskbarIcon;
                 break;
             case "WinPaperWalls.TrayIconView.ShowSettingsCommand":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("WinPaperWalls.TrayIconView");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "ShowSettingsCommand", "System.Windows.Input.ICommand");
-                xamlMember.Getter = get_29_TrayIconView_ShowSettingsCommand;
+                xamlMember.Getter = get_79_TrayIconView_ShowSettingsCommand;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_30_TreeViewNode_Children;
+                xamlMember.Getter = get_80_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_31_TreeViewNode_Content;
-                xamlMember.Setter = set_31_TreeViewNode_Content;
+                xamlMember.Getter = get_81_TreeViewNode_Content;
+                xamlMember.Setter = set_81_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_32_TreeViewNode_Depth;
+                xamlMember.Getter = get_82_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_33_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_83_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_34_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_34_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_84_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_84_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_35_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_35_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_85_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_85_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::WinPaperWalls.WinPaperWalls_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_36_TreeViewNode_Parent;
+                xamlMember.Getter = get_86_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }
