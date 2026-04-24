@@ -58,19 +58,6 @@
                               AutomationProperties.Name="Rotation interval" />
                 </controls:SettingsCard>
 
-                <!-- Start with Windows -->
-                <controls:SettingsCard
-                    Header="Start with Windows"
-                    Description="Launch PaperWalls automatically at login"
-                    AutomationProperties.AutomationId="SettingsCardStartup">
-                    <controls:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE7E8;" />
-                    </controls:SettingsCard.HeaderIcon>
-                    <ToggleSwitch IsOn="{x:Bind ViewModel.StartWithWindows, Mode=TwoWay}"
-                                  AutomationProperties.AutomationId="StartWithWindowsToggle"
-                                  AutomationProperties.Name="Start with Windows" />
-                </controls:SettingsCard>
-
                 <!-- Wallpaper Style -->
                 <controls:SettingsCard
                     Header="Wallpaper style"
@@ -135,7 +122,7 @@
                         <controls:SettingsCard ContentAlignment="Left"
                                                Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsLoaded), Mode=OneWay}">
                             <ListView ItemsSource="{x:Bind ViewModel.TopicItems, Mode=OneWay}"
-                                      MaxHeight="300"
+                                      Height="300"
                                       SelectionMode="None"
                                       AutomationProperties.AutomationId="TopicListView"
                                       AutomationProperties.Name="Wallpaper topics list">
@@ -150,6 +137,19 @@
                         </controls:SettingsCard>
                     </controls:SettingsExpander.Items>
                 </controls:SettingsExpander>
+
+                <!-- Start with Windows -->
+                <controls:SettingsCard
+                    Header="Start with Windows"
+                    Description="Launch PaperWalls automatically at login"
+                    AutomationProperties.AutomationId="SettingsCardStartup">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7E8;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <ToggleSwitch IsOn="{x:Bind ViewModel.StartWithWindows, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="StartWithWindowsToggle"
+                                  AutomationProperties.Name="Start with Windows" />
+                </controls:SettingsCard>
 
                 <!-- Diagnostics Section -->
                 <TextBlock Text="Diagnostics"
