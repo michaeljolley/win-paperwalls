@@ -155,6 +155,25 @@
 **Key implementation details:**
 - `new TrayIcon(id, iconPath, tooltip)` with filesystem path to Assets/logo.ico
 - `icon.Selected` event for left-click → opens settings window
+
+### 2025-01-09 - Documentation Update: README Refresh
+
+**What changed:**
+- Updated README.md to reflect current project state (tech stack, features, build process)
+- Added project logo (128px width) at top with centered HTML img tag
+- Updated tech stack: .NET 9 → .NET 10, H.NotifyIcon.WinUI → WinUIEx 2.9.0, Windows App SDK 1.6 → 1.8
+- Added Serilog to tech stack documentation (already implemented for logging)
+- Simplified build instructions (removed implicit dotnet restore, removed dotnet run for WinUI app)
+- Added File Logging and Bug Reporting features to features list
+- Added "Report bug" option to tray menu documentation
+- Enhanced Architecture section with internal sealed services, Serilog logging, MSIX packaging notes
+- Added Testing section referencing 48 xUnit tests
+
+**Why:**
+- README was significantly outdated (referenced .NET 9 and old tray icon library)
+- Logging and bug reporting features were implemented but not documented
+- Build instructions didn't match actual workflow (WinUI apps run via F5 or exe, not dotnet run)
+- Project maintainability improved by having authoritative, accurate documentation
 - `icon.ContextMenu` event builds MenuFlyout with Refresh, Settings, Exit items
 - Task.Run() wrapper kept on ChangeWallpaperAsync() to avoid UI thread deadlock
 - TrayIcon.Dispose() called in App.Exit() to prevent ghost icons
