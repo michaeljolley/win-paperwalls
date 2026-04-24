@@ -1,0 +1,13 @@
+<Project>
+  <Target Name="DisablePriGen" BeforeTargets="ExpandPriContent" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'">
+    <PropertyGroup>
+      <GeneratePri>false</GeneratePri>
+      <AppxPackage>false</AppxPackage>
+    </PropertyGroup>
+  </Target>
+  
+  <!-- Override the problematic target for test projects -->
+  <Target Name="ExpandPriContent" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
+  <Target Name="GeneratePriConfigXml" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
+  <Target Name="CreatePriFilesFromBuildPackagePriConfig" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
+</Project>
