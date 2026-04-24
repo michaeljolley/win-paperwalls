@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Serilog;
 using WinPaperWalls.Services;
+using WinPaperWalls.ViewModels;
 using WinUIEx;
 
 namespace WinPaperWalls;
@@ -62,6 +63,9 @@ public partial class App : Application
 				services.AddSingleton<IWallpaperService, WallpaperService>();
 				services.AddSingleton<StartupManager>();
 				services.AddSingleton<ILogBundleService, LogBundleService>();
+
+				// Register view models
+				services.AddSingleton<SettingsViewModel>();
 
 				// Register scheduler as both ISchedulerService and IHostedService
 				services.AddSingleton<SchedulerService>();
