@@ -121,3 +121,20 @@
 - Scheduler provides automatic wallpaper rotation when app is running
 - Combined with Phase 3 tray menu, user has both automatic (scheduler) and manual (Next Wallpaper menu item) control
 
+### 2026-04-24 - Bugfix: Tray Icon Not Appearing in Debug Mode
+
+**Root cause (two issues):**
+1. `TrayIconView` was created as an orphaned UserControl never added to a visual tree — H.NotifyIcon.WinUI's `TaskbarIcon` requires either a loaded visual tree or an explicit `ForceCreate()` call to create the Win32 notify icon.
+2. `IconSource="ms-appx:///Assets/logo.ico"` doesn't resolve in unpackaged apps (`WindowsPackageType=None`). The `ms-appx:///` URI scheme is for MSIX-packaged apps only.
+
+**Fix applied:**
+- Removed `IconSource` from XAML; set it in code-behind using `Path.Combine(AppContext.BaseDirectory, "Assets", "logo.ico")` for filesystem-based resolution
+- Called `TrayIcon.ForceCreate()` after setting properties in `TrayIconView` constructor — this creates the Win32 notify icon without needing a visual tree
+- Made `TrayIconView` implement `IDisposable` to properly dispose the `TaskbarIcon`
+- Updated `App.Exit()` to call `_trayIcon.Dispose()` instead of just nulling the reference
+
+**Key learnings for unpackaged WinUI 3 apps:**
+- `ms-appx:///` URI scheme does NOT work for unpackaged apps — use `AppContext.BaseDirectory` for asset paths
+- H.NotifyIcon.WinUI's `TaskbarIcon.ForceCreate()` is essential when the control isn't in a loaded visual tree
+- `TaskbarIcon` must be disposed on exit to remove the ghost icon from the system tray
+

@@ -67,8 +67,12 @@ public partial class App : Application
 
     public new async void Exit()
     {
-        // Dispose tray icon
-        _trayIcon = null;
+        // Dispose tray icon properly
+        if (_trayIcon != null)
+        {
+            _trayIcon.Dispose();
+            _trayIcon = null;
+        }
 
         // Stop the host gracefully
         if (_host != null)

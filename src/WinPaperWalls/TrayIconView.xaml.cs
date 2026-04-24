@@ -2,12 +2,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using System.Windows.Input;
 using WinPaperWalls.Services;
 
 namespace WinPaperWalls;
 
-public sealed partial class TrayIconView : UserControl
+public sealed partial class TrayIconView : UserControl, IDisposable
 {
     private readonly IWallpaperService _wallpaperService;
 
@@ -16,9 +17,21 @@ public sealed partial class TrayIconView : UserControl
         InitializeComponent();
         _wallpaperService = App.Services.GetRequiredService<IWallpaperService>();
         ShowSettingsCommand = new ShowSettingsCommandImpl();
+
+        // Set icon from filesystem path (ms-appx:/// doesn't work in unpackaged apps)
+        var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "logo.ico");
+        TrayIcon.IconSource = new BitmapImage(new Uri(iconPath));
+
+        // Force creation of the Win32 notify icon without needing a visual tree
+        TrayIcon.ForceCreate();
     }
 
     public ICommand ShowSettingsCommand { get; }
+
+    public void Dispose()
+    {
+        TrayIcon.Dispose();
+    }
 
     private async void NextWallpaper_Click(object sender, RoutedEventArgs e)
     {
