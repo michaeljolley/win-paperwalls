@@ -7,7 +7,7 @@
     <tb:TaskbarIcon 
         x:Name="TrayIcon"
         ToolTipText="WinPaperWalls"
-        IconSource="ms-appx:///Assets/tray-icon.ico"
+        IconSource="ms-appx:///Assets/logo.ico"
         LeftClickCommand="{x:Bind ShowSettingsCommand}"
         DoubleClickCommand="{x:Bind ShowSettingsCommand}">
         <tb:TaskbarIcon.ContextFlyout>

@@ -4,6 +4,12 @@
     <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
     <TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>WinPaperWalls</RootNamespace>
+    <AssemblyName>BaldBeardedBuilder.WinPaperWalls</AssemblyName>
+    <Product>BaldBeardedBuilder.WinPaperWalls</Product>
+    <AssemblyTitle>BaldBeardedBuilder.WinPaperWalls</AssemblyTitle>
+    <Company>BaldBeardedBuilder</Company>
+    <Authors>BaldBeardedBuilder</Authors>
+    <Description>Rotates your Windows wallpaper daily with 4K images from the Paper collection.</Description>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Platforms>x64;ARM64</Platforms>
     <RuntimeIdentifiers>win-x64;win-arm64</RuntimeIdentifiers>
@@ -11,6 +17,7 @@
     <UseWinUI>true</UseWinUI>
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsPackageType>None</WindowsPackageType>
+    <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
