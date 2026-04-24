@@ -136,10 +136,10 @@ public class SchedulerServiceTests
     [Fact]
     public async Task TimerTick_ChangesWallpaperPeriodically()
     {
-        // Arrange - use very short interval for testing
+        // Arrange - use minimum allowed interval for testing
         _settingsService.LoadSettings().Returns(new AppSettings
         {
-            IntervalMinutes = 0 // This would cause issues, but we're just testing the tick mechanism
+            IntervalMinutes = 1 // Minimum allowed interval
         });
 
         var service = new SchedulerService(_wallpaperService, _settingsService, _logger);

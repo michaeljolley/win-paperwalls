@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinPaperWalls.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a918f9d2393bef584734b0eaaf5d2c2e6cdd4f19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1dd3180fed76da4c062dbb172aacfed04661f6e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinPaperWalls.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinPaperWalls.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

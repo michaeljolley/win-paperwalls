@@ -1,6 +1,7 @@
 using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using NSubstitute;
+using WinPaperWalls.Interop;
 using WinPaperWalls.Models;
 using WinPaperWalls.Services;
 
@@ -11,6 +12,7 @@ public class WallpaperServiceTests
     private readonly IGitHubImageService _githubService;
     private readonly ICacheService _cacheService;
     private readonly ISettingsService _settingsService;
+    private readonly IDesktopWallpaperService _desktopWallpaperService;
     private readonly ILogger<WallpaperService> _logger;
 
     public WallpaperServiceTests()
@@ -18,6 +20,7 @@ public class WallpaperServiceTests
         _githubService = Substitute.For<IGitHubImageService>();
         _cacheService = Substitute.For<ICacheService>();
         _settingsService = Substitute.For<ISettingsService>();
+        _desktopWallpaperService = Substitute.For<IDesktopWallpaperService>();
         _logger = Substitute.For<ILogger<WallpaperService>>();
 
         // Default settings
@@ -45,7 +48,7 @@ public class WallpaperServiceTests
             .Returns("C:\\test\\image1.jpg");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024); // 100 MB
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();
@@ -58,6 +61,7 @@ public class WallpaperServiceTests
             _githubService.GetImagesAsync("nature");
             _cacheService.DownloadImageAsync(Arg.Any<string>(), Arg.Any<string>());
         });
+        _desktopWallpaperService.Received(1).SetWallpaper(Arg.Any<string>(), Arg.Any<WallpaperStyle>());
     }
 
     [Fact]
@@ -76,7 +80,7 @@ public class WallpaperServiceTests
             .Returns("C:\\test\\image1.jpg");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();
@@ -93,7 +97,7 @@ public class WallpaperServiceTests
         // Arrange
         _githubService.GetTopicsAsync().Returns(new List<string>());
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();
@@ -125,7 +129,7 @@ public class WallpaperServiceTests
             .Returns("C:\\test\\image2.jpg");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act - should not throw
         await service.ChangeWallpaperAsync();
@@ -152,7 +156,7 @@ public class WallpaperServiceTests
         // Cache size exceeds limit (600 MB > 500 MB)
         _cacheService.GetCacheSizeBytes().Returns(600L * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();
@@ -179,7 +183,7 @@ public class WallpaperServiceTests
             .Returns(x => $"C:\\test\\{x.ArgAt<string>(1)}");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act - call multiple times
         var usedFiles = new HashSet<string>();
@@ -209,7 +213,7 @@ public class WallpaperServiceTests
             .Returns("C:\\test\\space1.jpg");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();
@@ -235,7 +239,7 @@ public class WallpaperServiceTests
             .Returns("C:\\test\\image.jpg");
         _cacheService.GetCacheSizeBytes().Returns(100 * 1024 * 1024);
 
-        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _logger);
+        var service = new WallpaperService(_githubService, _cacheService, _settingsService, _desktopWallpaperService, _logger);
 
         // Act
         await service.ChangeWallpaperAsync();

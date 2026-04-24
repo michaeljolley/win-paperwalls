@@ -17,11 +17,21 @@
     <EnableDefaultPriIndexFileItems>false</EnableDefaultPriIndexFileItems>
   </PropertyGroup>
   
-  <!-- Disable PRI generation tasks -->
-  <Target Name="_ExpandPriContent" />
-  <Target Name="_GenerateProjectPriFile" />
+  <!-- Disable PRI generation tasks inherited from WinUI project reference -->
+  <Target Name="_ExpandPriContent" BeforeTargets="Build" />
+  <Target Name="_GenerateProjectPriFile" BeforeTargets="Build" />
+  <Target Name="_GenerateProjectPriConfigFile" BeforeTargets="Build" />
+  <Target Name="_MrtCorePriGen" BeforeTargets="Build" />
+
+  <!-- Suppress WindowsAppSDK build transitive targets for test project -->
+  <PropertyGroup>
+    <EnableMrtCoreGeneration>false</EnableMrtCoreGeneration>
+    <MrtCoreGenerateProjectPriFile>false</MrtCoreGenerateProjectPriFile>
+  </PropertyGroup>
 
   <ItemGroup>
+    <!-- Exclude WinAppSDK build/buildTransitive targets from flowing into test project -->
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.240923002" ExcludeAssets="build;buildTransitive" />
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="FluentAssertions" Version="8.9.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />

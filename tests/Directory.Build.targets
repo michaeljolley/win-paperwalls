@@ -1,13 +1,7 @@
 <Project>
-  <Target Name="DisablePriGen" BeforeTargets="ExpandPriContent" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'">
-    <PropertyGroup>
-      <GeneratePri>false</GeneratePri>
-      <AppxPackage>false</AppxPackage>
-    </PropertyGroup>
-  </Target>
-  
-  <!-- Override the problematic target for test projects -->
-  <Target Name="ExpandPriContent" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
-  <Target Name="GeneratePriConfigXml" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
-  <Target Name="CreatePriFilesFromBuildPackagePriConfig" Condition="'$(MSBuildProjectName)' == 'WinPaperWalls.Tests'" />
+  <!-- Override WinAppSDK PRI generation targets that fail in test projects without full VS tooling -->
+  <Target Name="_ExpandPriContent" />
+  <Target Name="_GenerateProjectPriFile" />
+  <Target Name="_GenerateProjectPriConfigFile" />
+  <Target Name="_MrtCorePriGen" />
 </Project>
