@@ -138,3 +138,29 @@
 - H.NotifyIcon.WinUI's `TaskbarIcon.ForceCreate()` is essential when the control isn't in a loaded visual tree
 - `TaskbarIcon` must be disposed on exit to remove the ghost icon from the system tray
 
+### 2026-04-25 - Tray Icon Migration: H.NotifyIcon.WinUI → WinUIEx
+
+**What changed:**
+- Replaced H.NotifyIcon.WinUI (v2.1.4) with WinUIEx (v2.9.0) for system tray icon
+- Deleted TrayIconView.xaml and TrayIconView.xaml.cs — no longer need a UserControl wrapper
+- Tray icon now created directly in App.xaml.cs using WinUIEx's `TrayIcon` class (window-less pattern)
+- Upgraded Microsoft.WindowsAppSDK from 1.6.240923002 to 1.8.250907003 (required by WinUIEx 2.9.0)
+- Upgraded Microsoft.Windows.SDK.BuildTools from 10.0.26100.1742 to 10.0.26100.4654
+
+**Why:**
+- H.NotifyIcon.WinUI's TaskbarIcon required a visual tree or ForceCreate() hack — click handlers were broken
+- WinUIEx's TrayIcon class is designed for window-less tray apps with native MenuFlyout support
+- WinUIEx is battle-tested (used by PowerToys, Files, Windows Dev Home)
+
+**Key implementation details:**
+- `new TrayIcon(id, iconPath, tooltip)` with filesystem path to Assets/logo.ico
+- `icon.Selected` event for left-click → opens settings window
+- `icon.ContextMenu` event builds MenuFlyout with Refresh, Settings, Exit items
+- Task.Run() wrapper kept on ChangeWallpaperAsync() to avoid UI thread deadlock
+- TrayIcon.Dispose() called in App.Exit() to prevent ghost icons
+
+**Impact:**
+- All 48 tests still pass (no test changes needed — tests didn't reference tray icon types)
+- Test project WindowsAppSDK version updated to match main project
+- Build warning: NETSDK1198 about missing publish profile (pre-existing, not from this change)
+

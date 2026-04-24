@@ -1,8 +1,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System.Threading;
 using WinPaperWalls.Services;
+using WinUIEx;
 
 namespace WinPaperWalls;
 
@@ -10,7 +12,7 @@ public partial class App : Application
 {
     private static Mutex? _instanceMutex;
     private IHost? _host;
-    private TrayIconView? _trayIcon;
+    private TrayIcon? _trayIcon;
 
     public App()
     {
@@ -60,8 +62,52 @@ public partial class App : Application
         _host.Start();
 
         // Create and show tray icon (app starts minimized to tray)
-        _trayIcon = new TrayIconView();
-        
+        var iconPath = Path.Combine(AppContext.BaseDirectory, "Assets", "logo.ico");
+        _trayIcon = new TrayIcon(1, iconPath, "WinPaperWalls");
+        _trayIcon.IsVisible = true;
+
+        _trayIcon.Selected += (s, e) =>
+        {
+            var mainWindow = Services.GetRequiredService<MainWindow>();
+            mainWindow.Activate();
+        };
+
+        _trayIcon.ContextMenu += (s, e) =>
+        {
+            var flyout = new MenuFlyout();
+
+            var refreshItem = new MenuFlyoutItem { Text = "Refresh PaperWall" };
+            refreshItem.Click += async (_, _) =>
+            {
+                try
+                {
+                    var wallpaperService = Services.GetRequiredService<IWallpaperService>();
+                    await Task.Run(() => wallpaperService.ChangeWallpaperAsync());
+                }
+                catch
+                {
+                    // Silently handle errors for now
+                }
+            };
+            flyout.Items.Add(refreshItem);
+
+            var settingsItem = new MenuFlyoutItem { Text = "Settings..." };
+            settingsItem.Click += (_, _) =>
+            {
+                var mainWindow = Services.GetRequiredService<MainWindow>();
+                mainWindow.Activate();
+            };
+            flyout.Items.Add(settingsItem);
+
+            flyout.Items.Add(new MenuFlyoutSeparator());
+
+            var exitItem = new MenuFlyoutItem { Text = "Exit" };
+            exitItem.Click += (_, _) => Exit();
+            flyout.Items.Add(exitItem);
+
+            e.Flyout = flyout;
+        };
+
         // Do NOT show MainWindow on startup - it opens when user clicks Settings
     }
 
