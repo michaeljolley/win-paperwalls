@@ -2,6 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/WinPaperWalls/WinPaperWalls.csproj">
       <Platform Project="x64" />
+      <Deploy Solution="Debug|*" />
     </Project>
   </Folder>
   <Folder Name="/tests/">

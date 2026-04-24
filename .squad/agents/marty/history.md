@@ -209,3 +209,134 @@
 - `src/WinPaperWalls/Services/DesktopWallpaperService.cs` — implemented new method
 - `src/WinPaperWalls/MainWindow.xaml.cs` — live preview, revert, and settings reload logic
 
+### 2025-01-10 - Settings UX Overhaul
+
+**What was built:**
+- Custom title bar using `ExtendsContentIntoTitleBar = true` + `SetTitleBar()` with Mica backdrop
+- Renamed all "WinPaperWalls" references to "PaperWalls" in the Settings UI
+- Grouped settings into "General" and "Background" sections with SubtitleTextBlockStyle headers
+- Replaced ItemsRepeater with virtualized ListView (MaxHeight=300) for topic list to prevent infinite scroll
+- General section: Rotation interval, Cache, Maximum cache size, Start with Windows
+- Background section: Wallpaper style, Wallpaper topics (expander)
+
+**Key design decisions:**
+- ListView with `SelectionMode="None"` replaces ItemsRepeater — built-in virtualization handles long topic lists
+- MaxHeight="300" on ListView keeps topics scrollable internally without expanding the page
+- Section headers use SubtitleTextBlockStyle per Fluent Design guidelines (20px)
+- Margin="0,24,0,8" for section spacing between groups (4px grid system)
+- Custom title bar uses CaptionTextBlockStyle for the app name in the drag region
+
+**Files modified:**
+- `src/WinPaperWalls/MainWindow.xaml` — full layout restructure
+- `src/WinPaperWalls/MainWindow.xaml.cs` — added ExtendsContentIntoTitleBar and SetTitleBar() in constructor
+
+### 2025-01-10 - Settings Layout & Scroll Fixes
+
+**What changed:**
+- Moved "Start with Windows" toggle to be the last setting in the Backgrounds section (after Topics expander), per Michael's request
+- Bumped settings window size 25% from 600×800 to 750×1000 for more breathing room
+- Fixed topic list scrolling: changed ListView from `MaxHeight="300"` to `Height="300"` — a fixed height gives the ListView a definite viewport so its built-in ScrollViewer activates properly inside the SettingsCard container
+
+**Key learning:**
+- Inside a `SettingsCard` (which uses Auto-sizing), `MaxHeight` on a ListView doesn't create a proper scrollable region because the parent doesn't constrain it enough. Using a fixed `Height` forces the ListView to define its own viewport, enabling its built-in virtualized scrolling.
+
+**Files modified:**
+- `src/WinPaperWalls/MainWindow.xaml` — reordered Start with Windows, fixed ListView Height
+- `src/WinPaperWalls/MainWindow.xaml.cs` — updated window Resize dimensions
+
+
+
+## 2026-04-24T17:37:00Z — Settings Layout Fixes
+**Status:** SUCCESS
+- Move Start with Windows to last in Backgrounds
+- Bump window size 25% to 750×1000
+- Fix topic ListView scrolling with Height=300
+- Build: 0 errors | Tests: 48 pass
+- Committed and pushed
+
+### 2026-04-24 - Topic Selector Pill/Tag UI Redesign
+
+**What was built:**
+- Replaced checkbox-based topic list with modern AutoSuggestBox + removable pill/tag UI
+- AutoSuggestBox for real-time topic search and filtering
+- Selected topics displayed as pill badges with X button for removal
+- ItemsRepeater with UniformGridLayout for flexible pill layout
+
+**Technical implementation:**
+- Added `SelectedTopics` and `TopicSuggestions` ObservableCollections to SettingsViewModel
+- `FilterTopics()` method: searches topic list, updates suggestions as user types
+- `AddTopic()` method: adds topic to selected list, clears input, refreshes suggestions
+- `RefreshSelectedTopics()` method: reloads selected topics from settings
+- `RemoveCommand` on `TopicItemViewModel` with parameter binding for pill removal
+- Pill styling: TextBlock in HyperlinkButton with accent hover effect
+- Suggestions dropdown populated by filtered results
+
+**User experience improvements:**
+- Type-to-search for faster topic selection (no scrolling needed)
+- Visual feedback with pill badges and hover states
+- One-click removal via X button on each pill
+- Keyboard support: Enter to add, Backspace to remove (if input empty)
+
+**Files modified:**
+- `src/WinPaperWalls/MainWindow.xaml` — added AutoSuggestBox, pill ItemsRepeater
+- `src/WinPaperWalls/MainWindow.xaml.cs` — AutoSuggestBox event handlers
+- `src/WinPaperWalls/ViewModels/SettingsViewModel.cs` — new collections, filter/add/refresh methods
+
+**Design decisions:**
+- AutoSuggestBox placed above pills for natural top-to-bottom scanning
+- UniformGridLayout for pills enables flexible wrapping (responsive to window width)
+- Pill styling matches Fluent Design accent colors
+- No external pill UI library — implemented with HyperlinkButton + TextBlock
+- Backward compatible: saved selected topics still load correctly
+
+**Impact:**
+- All 48 tests pass
+- Build: 0 errors
+- Cleaner, more modern settings UX
+- Better discoverability for topic selection (searchable vs. static list)
+
+### 2026-04-24 - Settings UI Refinements: Exclusion Model & Expander Layout
+
+**What was built:**
+- Widened settings window from 750px to 900px for better breathing room
+- Flipped topic selection from "include" model to "exclude" model
+- Moved topic UI into a SettingsExpander for better visual hierarchy
+
+**Technical changes:**
+
+*Window sizing:*
+- Changed window size from 750×1000 to 900×1000 in MainWindow.xaml.cs line 25
+
+*Exclusion model logic (SettingsViewModel.cs):*
+- `RefreshSelectedTopics()`: Now populates from `TopicItems.Where(t => !t.IsSelected)` (excluded topics shown as pills)
+- `FilterTopics()`: Now filters `t.IsSelected` topics (included topics can be searched to exclude)
+- `AddTopic()`: Now sets `IsSelected = false` to exclude a topic
+- `RemoveCommand`: Now sets `IsSelected = true` to re-include the topic
+- `SelectAllTopics`: Includes all topics (removes all exclusions)
+- `DeselectAllTopics`: Excludes all topics (shows all as pills)
+
+*XAML structure (MainWindow.xaml):*
+- Wrapped topic UI in a `SettingsExpander` with `IsExpanded="True"`
+- Header: "Excluded topics", Description: "Topics excluded from wallpaper rotation"
+- Loading indicator moved to expander header content area
+- Single nested `SettingsCard` with `ContentAlignment="Vertical"` and `HorizontalContentAlignment="Stretch"` for full-width content
+- InfoBar, search grid, and pills all contained in one vertical StackPanel inside the card
+- AutoSuggestBox placeholder: "Search topics to exclude..."
+- Button labels: "Include all" and "Exclude all"
+
+**Key learning:**
+- `ContentAlignment="Vertical"` on inner SettingsCard prevents right-aligned content (default behavior when SettingsCard is in SettingsExpander.Items)
+- `HorizontalContentAlignment="Stretch"` ensures full-width content utilization
+- SettingsExpander provides better visual grouping and collapsible UI for complex settings sections
+
+**Files modified:**
+- `src/WinPaperWalls/MainWindow.xaml.cs` — window width 750 → 900
+- `src/WinPaperWalls/ViewModels/SettingsViewModel.cs` — flipped all topic selection logic to exclusion model
+- `src/WinPaperWalls/MainWindow.xaml` — restructured to SettingsExpander, updated labels/placeholders
+
+**Impact:**
+- All 48 tests pass
+- Build: 0 errors
+- Clearer mental model: "exclude topics you don't want" instead of "include topics you want"
+- Better visual hierarchy with expandable topic section
+- More horizontal space for content with 900px width

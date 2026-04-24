@@ -86,6 +86,31 @@ The settings window makes a direct HTTP call to the GitHub API to fetch unfilter
 - Settings window has direct GitHub API dependency (acceptable for this use case)
 - GitHubImageService remains focused on runtime wallpaper fetching
 
+### 2026-04-24: Settings Page UX Design
+
+**Status:** Decided  
+**Author:** Marty (Frontend Dev)
+
+Settings window UI redesigned for modern Windows 11 aesthetics and improved usability.
+
+**Decision:**
+1. **Custom title bar** with `ExtendsContentIntoTitleBar` and Mica backdrop
+2. **Renamed to "PaperWalls"** throughout settings UI (user-facing brand)
+3. **Grouped settings** into "General" (interval, cache, startup) and "Background" (style, topics) sections
+4. **Virtualized topic list** using ListView with MaxHeight=300 instead of ItemsRepeater
+
+**Rationale:**
+- ListView provides built-in UI virtualization — only visible items rendered, solving scroll performance
+- Grouping settings helps users find preferences faster
+- Custom title bar integrates with Mica for polished, modern Windows 11 look
+- "PaperWalls" is user-facing brand name per Michael's request
+
+**Impact:**
+- No API or service changes — purely UI layer
+- All 48 existing tests continue to pass
+- Accessibility: AutomationProperties preserved, ListView adds built-in keyboard navigation
+- Performance improved through virtualization
+
 ### 2026-04-24: Test Project Architecture & Refactoring
 
 **Status:** Decided  
