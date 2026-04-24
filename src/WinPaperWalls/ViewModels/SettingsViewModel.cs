@@ -68,6 +68,8 @@ public sealed partial class SettingsViewModel : ObservableObject
 	private bool _settingsLoaded;
 
 	public ObservableCollection<TopicItemViewModel> TopicItems { get; } = new();
+	public ObservableCollection<TopicItemViewModel> SelectedTopics { get; } = new();
+	public ObservableCollection<string> TopicSuggestions { get; } = new();
 
 	public static readonly (string Label, int Minutes)[] IntervalOptions =
 	[
@@ -122,10 +124,20 @@ public sealed partial class SettingsViewModel : ObservableObject
 				TopicItems.Add(new TopicItemViewModel
 				{
 					Name = topic,
-					IsSelected = !excludedTopics.Contains(topic, StringComparer.OrdinalIgnoreCase)
+					IsSelected = !excludedTopics.Contains(topic, StringComparer.OrdinalIgnoreCase),
+					RemoveCommand = new RelayCommand(() =>
+					{
+						var t = TopicItems.FirstOrDefault(x => x.Name == topic);
+						if (t != null)
+						{
+							t.IsSelected = false;
+							RefreshSelectedTopics();
+						}
+					})
 				});
 			}
 
+			RefreshSelectedTopics();
 			TopicsLoaded = true;
 		}
 		catch (Exception ex)
@@ -187,6 +199,7 @@ public sealed partial class SettingsViewModel : ObservableObject
 		{
 			item.IsSelected = true;
 		}
+		RefreshSelectedTopics();
 	}
 
 	[RelayCommand]
@@ -196,6 +209,37 @@ public sealed partial class SettingsViewModel : ObservableObject
 		{
 			item.IsSelected = false;
 		}
+		RefreshSelectedTopics();
+	}
+
+	public void FilterTopics(string query)
+	{
+		TopicSuggestions.Clear();
+		if (string.IsNullOrWhiteSpace(query)) return;
+
+		var matches = TopicItems
+			.Where(t => !t.IsSelected && t.Name.Contains(query, StringComparison.OrdinalIgnoreCase))
+			.Select(t => t.Name);
+
+		foreach (var name in matches)
+			TopicSuggestions.Add(name);
+	}
+
+	public void AddTopic(string name)
+	{
+		var topic = TopicItems.FirstOrDefault(t => t.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+		if (topic != null && !topic.IsSelected)
+		{
+			topic.IsSelected = true;
+			RefreshSelectedTopics();
+		}
+	}
+
+	private void RefreshSelectedTopics()
+	{
+		SelectedTopics.Clear();
+		foreach (var item in TopicItems.Where(t => t.IsSelected))
+			SelectedTopics.Add(item);
 	}
 
 	[RelayCommand]
@@ -257,6 +301,8 @@ public sealed partial class TopicItemViewModel : ObservableObject
 
 	[ObservableProperty]
 	private bool _isSelected;
+
+	public IRelayCommand? RemoveCommand { get; init; }
 }
 
 #pragma warning restore MVVMTK0045

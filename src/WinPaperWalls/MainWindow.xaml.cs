@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using WinPaperWalls.Interop;
 using WinPaperWalls.ViewModels;
 
@@ -72,4 +73,21 @@ public sealed partial class MainWindow : Window
 	// Helper for x:Bind visibility conversion
 	public Visibility BoolToVisibility(bool value) =>
 		value ? Visibility.Visible : Visibility.Collapsed;
+
+	private void TopicSearchBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+	{
+		if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+		{
+			ViewModel.FilterTopics(sender.Text);
+		}
+	}
+
+	private void TopicSearchBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+	{
+		if (args.SelectedItem is string topicName)
+		{
+			ViewModel.AddTopic(topicName);
+			sender.Text = string.Empty;
+		}
+	}
 }
