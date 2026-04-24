@@ -13,6 +13,10 @@ public sealed partial class MainWindow : Window
 	{
 		InitializeComponent();
 
+		// Custom title bar
+		ExtendsContentIntoTitleBar = true;
+		SetTitleBar(AppTitleBar);
+
 		ViewModel = App.Services.GetRequiredService<SettingsViewModel>();
 
 		// Populate ComboBox items from ViewModel arrays

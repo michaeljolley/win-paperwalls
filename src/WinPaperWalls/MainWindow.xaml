@@ -6,176 +6,204 @@
     xmlns:vm="using:WinPaperWalls.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Title="WinPaperWalls Settings">
+    mc:Ignorable="d">
 
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <StackPanel Padding="36" Spacing="4" MaxWidth="700">
-            <!-- Header -->
-            <TextBlock Text="WinPaperWalls" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,4" />
-            <TextBlock Text="Settings"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Custom Title Bar -->
+        <Grid x:Name="AppTitleBar"
+              Grid.Row="0"
+              Height="48"
+              Padding="16,0">
+            <TextBlock Text="PaperWalls"
                        Style="{StaticResource CaptionTextBlockStyle}"
-                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"
-                       Margin="0,0,0,24" />
+                       VerticalAlignment="Center" />
+        </Grid>
 
-            <!-- Rotation Interval -->
-            <controls:SettingsCard
-                Header="Rotation interval"
-                Description="How often the wallpaper changes"
-                AutomationProperties.AutomationId="SettingsCardInterval">
-                <controls:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE895;" />
-                </controls:SettingsCard.HeaderIcon>
-                <ComboBox x:Name="IntervalComboBox"
-                          MinWidth="200"
-                          SelectedIndex="{x:Bind ViewModel.SelectedIntervalIndex, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="IntervalComboBox"
-                          AutomationProperties.Name="Rotation interval" />
-            </controls:SettingsCard>
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel Padding="36" Spacing="4" MaxWidth="700">
+                <!-- Header -->
+                <TextBlock Text="PaperWalls" Style="{StaticResource TitleTextBlockStyle}" Margin="0,0,0,4" />
+                <TextBlock Text="Settings"
+                           Style="{StaticResource CaptionTextBlockStyle}"
+                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                           Margin="0,0,0,24" />
 
-            <!-- Wallpaper Style -->
-            <controls:SettingsCard
-                Header="Wallpaper style"
-                Description="How images are displayed on your desktop"
-                AutomationProperties.AutomationId="SettingsCardStyle">
-                <controls:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE91B;" />
-                </controls:SettingsCard.HeaderIcon>
-                <ComboBox x:Name="StyleComboBox"
-                          MinWidth="200"
-                          SelectedIndex="{x:Bind ViewModel.SelectedStyleIndex, Mode=TwoWay}"
-                          AutomationProperties.AutomationId="StyleComboBox"
-                          AutomationProperties.Name="Wallpaper style" />
-            </controls:SettingsCard>
+                <!-- General Section -->
+                <TextBlock Text="General"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="0,0,0,8" />
 
-            <!-- Topics -->
-            <controls:SettingsExpander
-                Header="Wallpaper topics"
-                Description="Select which collections to include"
-                AutomationProperties.AutomationId="SettingsExpanderTopics">
-                <controls:SettingsExpander.HeaderIcon>
-                    <FontIcon Glyph="&#xE8B9;" />
-                </controls:SettingsExpander.HeaderIcon>
+                <!-- Rotation Interval -->
+                <controls:SettingsCard
+                    Header="Rotation interval"
+                    Description="How often the wallpaper changes"
+                    AutomationProperties.AutomationId="SettingsCardInterval">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE895;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="IntervalComboBox"
+                              MinWidth="200"
+                              SelectedIndex="{x:Bind ViewModel.SelectedIntervalIndex, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="IntervalComboBox"
+                              AutomationProperties.Name="Rotation interval" />
+                </controls:SettingsCard>
 
-                <!-- Summary content in collapsed header -->
-                <StackPanel Orientation="Horizontal" Spacing="8">
-                    <ProgressRing IsActive="{x:Bind ViewModel.IsTopicsLoading, Mode=OneWay}"
-                                  Visibility="{x:Bind BoolToVisibility(ViewModel.IsTopicsLoading), Mode=OneWay}"
-                                  Width="20" Height="20" />
-                    <TextBlock Text="Loading..."
-                               Visibility="{x:Bind BoolToVisibility(ViewModel.IsTopicsLoading), Mode=OneWay}"
-                               VerticalAlignment="Center"
-                               Style="{StaticResource CaptionTextBlockStyle}" />
-                </StackPanel>
+                <!-- Cache Status -->
+                <controls:SettingsCard
+                    Header="Cache"
+                    Description="{x:Bind ViewModel.CacheSizeText, Mode=OneWay}"
+                    AutomationProperties.AutomationId="SettingsCardCache">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE74D;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <Button Content="Clear cache"
+                            Command="{x:Bind ViewModel.ClearCacheCommand}"
+                            AutomationProperties.AutomationId="ClearCacheButton"
+                            AutomationProperties.Name="Clear wallpaper cache" />
+                </controls:SettingsCard>
 
-                <controls:SettingsExpander.Items>
-                    <!-- Error bar -->
-                    <controls:SettingsCard ContentAlignment="Left"
-                                           Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsError), Mode=OneWay}">
-                        <InfoBar Severity="Error"
-                                 IsOpen="{x:Bind ViewModel.TopicsError, Mode=OneWay}"
-                                 IsClosable="False"
-                                 Title="Failed to load topics"
-                                 Message="Could not connect to GitHub." />
-                    </controls:SettingsCard>
+                <!-- Cache Max Size -->
+                <controls:SettingsCard
+                    Header="Maximum cache size"
+                    Description="Oldest images are removed when the cache exceeds this limit"
+                    AutomationProperties.AutomationId="SettingsCardCacheMax">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xEDA2;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <NumberBox Value="{x:Bind ViewModel.CacheMaxMB, Mode=TwoWay}"
+                               Minimum="100"
+                               Maximum="2000"
+                               SpinButtonPlacementMode="Inline"
+                               MinWidth="160"
+                               AutomationProperties.AutomationId="CacheMaxNumberBox"
+                               AutomationProperties.Name="Maximum cache size in megabytes" />
+                </controls:SettingsCard>
 
-                    <!-- Select / Deselect buttons -->
-                    <controls:SettingsCard ContentAlignment="Left"
-                                           Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsLoaded), Mode=OneWay}">
-                        <StackPanel Orientation="Horizontal" Spacing="8">
-                            <Button Content="Select all"
-                                    Command="{x:Bind ViewModel.SelectAllTopicsCommand}"
-                                    Style="{ThemeResource AccentButtonStyle}"
-                                    AutomationProperties.AutomationId="SelectAllTopicsButton" />
-                            <Button Content="Deselect all"
-                                    Command="{x:Bind ViewModel.DeselectAllTopicsCommand}"
-                                    AutomationProperties.AutomationId="DeselectAllTopicsButton" />
-                        </StackPanel>
-                    </controls:SettingsCard>
+                <!-- Start with Windows -->
+                <controls:SettingsCard
+                    Header="Start with Windows"
+                    Description="Launch PaperWalls automatically at login"
+                    AutomationProperties.AutomationId="SettingsCardStartup">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE7E8;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <ToggleSwitch IsOn="{x:Bind ViewModel.StartWithWindows, Mode=TwoWay}"
+                                  AutomationProperties.AutomationId="StartWithWindowsToggle"
+                                  AutomationProperties.Name="Start with Windows" />
+                </controls:SettingsCard>
 
-                    <!-- Topic checkboxes -->
-                    <controls:SettingsCard ContentAlignment="Left"
-                                           Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsLoaded), Mode=OneWay}">
-                        <ItemsRepeater ItemsSource="{x:Bind ViewModel.TopicItems, Mode=OneWay}">
-                            <ItemsRepeater.Layout>
-                                <StackLayout Spacing="4" />
-                            </ItemsRepeater.Layout>
-                            <ItemsRepeater.ItemTemplate>
-                                <DataTemplate x:DataType="vm:TopicItemViewModel">
-                                    <CheckBox Content="{x:Bind Name, Mode=OneWay}"
-                                              IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
-                                              AutomationProperties.AutomationId="{x:Bind Name, Mode=OneWay}" />
-                                </DataTemplate>
-                            </ItemsRepeater.ItemTemplate>
-                        </ItemsRepeater>
-                    </controls:SettingsCard>
-                </controls:SettingsExpander.Items>
-            </controls:SettingsExpander>
+                <!-- Background Section -->
+                <TextBlock Text="Background"
+                           Style="{StaticResource SubtitleTextBlockStyle}"
+                           Margin="0,24,0,8" />
 
-            <!-- Cache Status -->
-            <controls:SettingsCard
-                Header="Cache"
-                Description="{x:Bind ViewModel.CacheSizeText, Mode=OneWay}"
-                AutomationProperties.AutomationId="SettingsCardCache">
-                <controls:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE74D;" />
-                </controls:SettingsCard.HeaderIcon>
-                <Button Content="Clear cache"
-                        Command="{x:Bind ViewModel.ClearCacheCommand}"
-                        AutomationProperties.AutomationId="ClearCacheButton"
-                        AutomationProperties.Name="Clear wallpaper cache" />
-            </controls:SettingsCard>
+                <!-- Wallpaper Style -->
+                <controls:SettingsCard
+                    Header="Wallpaper style"
+                    Description="How images are displayed on your desktop"
+                    AutomationProperties.AutomationId="SettingsCardStyle">
+                    <controls:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE91B;" />
+                    </controls:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="StyleComboBox"
+                              MinWidth="200"
+                              SelectedIndex="{x:Bind ViewModel.SelectedStyleIndex, Mode=TwoWay}"
+                              AutomationProperties.AutomationId="StyleComboBox"
+                              AutomationProperties.Name="Wallpaper style" />
+                </controls:SettingsCard>
 
-            <!-- Cache Max Size -->
-            <controls:SettingsCard
-                Header="Maximum cache size"
-                Description="Oldest images are removed when the cache exceeds this limit"
-                AutomationProperties.AutomationId="SettingsCardCacheMax">
-                <controls:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xEDA2;" />
-                </controls:SettingsCard.HeaderIcon>
-                <NumberBox Value="{x:Bind ViewModel.CacheMaxMB, Mode=TwoWay}"
-                           Minimum="100"
-                           Maximum="2000"
-                           SpinButtonPlacementMode="Inline"
-                           MinWidth="160"
-                           AutomationProperties.AutomationId="CacheMaxNumberBox"
-                           AutomationProperties.Name="Maximum cache size in megabytes" />
-            </controls:SettingsCard>
+                <!-- Topics -->
+                <controls:SettingsExpander
+                    Header="Wallpaper topics"
+                    Description="Select which collections to include"
+                    AutomationProperties.AutomationId="SettingsExpanderTopics">
+                    <controls:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE8B9;" />
+                    </controls:SettingsExpander.HeaderIcon>
 
-            <!-- Start with Windows -->
-            <controls:SettingsCard
-                Header="Start with Windows"
-                Description="Launch WinPaperWalls automatically at login"
-                AutomationProperties.AutomationId="SettingsCardStartup">
-                <controls:SettingsCard.HeaderIcon>
-                    <FontIcon Glyph="&#xE7E8;" />
-                </controls:SettingsCard.HeaderIcon>
-                <ToggleSwitch IsOn="{x:Bind ViewModel.StartWithWindows, Mode=TwoWay}"
-                              AutomationProperties.AutomationId="StartWithWindowsToggle"
-                              AutomationProperties.Name="Start with Windows" />
-            </controls:SettingsCard>
+                    <!-- Summary content in collapsed header -->
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ProgressRing IsActive="{x:Bind ViewModel.IsTopicsLoading, Mode=OneWay}"
+                                      Visibility="{x:Bind BoolToVisibility(ViewModel.IsTopicsLoading), Mode=OneWay}"
+                                      Width="20" Height="20" />
+                        <TextBlock Text="Loading..."
+                                   Visibility="{x:Bind BoolToVisibility(ViewModel.IsTopicsLoading), Mode=OneWay}"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource CaptionTextBlockStyle}" />
+                    </StackPanel>
 
-            <!-- Save -->
-            <Button Content="Save settings"
-                    Command="{x:Bind ViewModel.SaveCommand}"
-                    Style="{ThemeResource AccentButtonStyle}"
-                    HorizontalAlignment="Stretch"
-                    Margin="0,20,0,0"
-                    AutomationProperties.AutomationId="SaveButton"
-                    AutomationProperties.Name="Save settings" />
+                    <controls:SettingsExpander.Items>
+                        <!-- Error bar -->
+                        <controls:SettingsCard ContentAlignment="Left"
+                                               Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsError), Mode=OneWay}">
+                            <InfoBar Severity="Error"
+                                     IsOpen="{x:Bind ViewModel.TopicsError, Mode=OneWay}"
+                                     IsClosable="False"
+                                     Title="Failed to load topics"
+                                     Message="Could not connect to GitHub." />
+                        </controls:SettingsCard>
 
-            <InfoBar x:Name="SaveSuccessBar"
-                     Severity="Success"
-                     IsOpen="{x:Bind ViewModel.SaveSuccessVisible, Mode=TwoWay}"
-                     IsClosable="True"
-                     Title="Settings saved"
-                     Message="Your settings have been saved successfully."
-                     Margin="0,4,0,0" />
-        </StackPanel>
-    </ScrollViewer>
+                        <!-- Select / Deselect buttons -->
+                        <controls:SettingsCard ContentAlignment="Left"
+                                               Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsLoaded), Mode=OneWay}">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <Button Content="Select all"
+                                        Command="{x:Bind ViewModel.SelectAllTopicsCommand}"
+                                        Style="{ThemeResource AccentButtonStyle}"
+                                        AutomationProperties.AutomationId="SelectAllTopicsButton" />
+                                <Button Content="Deselect all"
+                                        Command="{x:Bind ViewModel.DeselectAllTopicsCommand}"
+                                        AutomationProperties.AutomationId="DeselectAllTopicsButton" />
+                            </StackPanel>
+                        </controls:SettingsCard>
+
+                        <!-- Topic checkboxes (virtualized) -->
+                        <controls:SettingsCard ContentAlignment="Left"
+                                               Visibility="{x:Bind BoolToVisibility(ViewModel.TopicsLoaded), Mode=OneWay}">
+                            <ListView ItemsSource="{x:Bind ViewModel.TopicItems, Mode=OneWay}"
+                                      MaxHeight="300"
+                                      SelectionMode="None"
+                                      AutomationProperties.AutomationId="TopicListView"
+                                      AutomationProperties.Name="Wallpaper topics list">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="vm:TopicItemViewModel">
+                                        <CheckBox Content="{x:Bind Name, Mode=OneWay}"
+                                                  IsChecked="{x:Bind IsSelected, Mode=TwoWay}"
+                                                  AutomationProperties.AutomationId="{x:Bind Name, Mode=OneWay}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </controls:SettingsCard>
+                    </controls:SettingsExpander.Items>
+                </controls:SettingsExpander>
+
+                <!-- Save -->
+                <Button Content="Save settings"
+                        Command="{x:Bind ViewModel.SaveCommand}"
+                        Style="{ThemeResource AccentButtonStyle}"
+                        HorizontalAlignment="Stretch"
+                        Margin="0,20,0,0"
+                        AutomationProperties.AutomationId="SaveButton"
+                        AutomationProperties.Name="Save settings" />
+
+                <InfoBar x:Name="SaveSuccessBar"
+                         Severity="Success"
+                         IsOpen="{x:Bind ViewModel.SaveSuccessVisible, Mode=TwoWay}"
+                         IsClosable="True"
+                         Title="Settings saved"
+                         Message="Your settings have been saved successfully."
+                         Margin="0,4,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
 </Window>

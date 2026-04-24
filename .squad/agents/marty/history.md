@@ -209,3 +209,24 @@
 - `src/WinPaperWalls/Services/DesktopWallpaperService.cs` — implemented new method
 - `src/WinPaperWalls/MainWindow.xaml.cs` — live preview, revert, and settings reload logic
 
+### 2025-01-10 - Settings UX Overhaul
+
+**What was built:**
+- Custom title bar using `ExtendsContentIntoTitleBar = true` + `SetTitleBar()` with Mica backdrop
+- Renamed all "WinPaperWalls" references to "PaperWalls" in the Settings UI
+- Grouped settings into "General" and "Background" sections with SubtitleTextBlockStyle headers
+- Replaced ItemsRepeater with virtualized ListView (MaxHeight=300) for topic list to prevent infinite scroll
+- General section: Rotation interval, Cache, Maximum cache size, Start with Windows
+- Background section: Wallpaper style, Wallpaper topics (expander)
+
+**Key design decisions:**
+- ListView with `SelectionMode="None"` replaces ItemsRepeater — built-in virtualization handles long topic lists
+- MaxHeight="300" on ListView keeps topics scrollable internally without expanding the page
+- Section headers use SubtitleTextBlockStyle per Fluent Design guidelines (20px)
+- Margin="0,24,0,8" for section spacing between groups (4px grid system)
+- Custom title bar uses CaptionTextBlockStyle for the app name in the drag region
+
+**Files modified:**
+- `src/WinPaperWalls/MainWindow.xaml` — full layout restructure
+- `src/WinPaperWalls/MainWindow.xaml.cs` — added ExtendsContentIntoTitleBar and SetTitleBar() in constructor
+
