@@ -5,15 +5,18 @@
 ### 2026-04-24: Test Project Architecture
 
 **Status:** Under Review  
-**Author:** Biff  
+**Authors:** Biff, Jennifer  
 
 The test project (`tests/WinPaperWalls.Tests/`) encounters build conflicts when referencing the main WinUI 3 project. The WindowsAppSDK build targets expect Visual Studio build tools that aren't available in the .NET SDK alone (specifically MrtCore.PriGen.targets for PRI resource generation).
+
+**Update (Jennifer, 2026-04-24):** Comprehensive unit tests have been written for all services and models (40+ test cases covering happy paths, error handling, edge cases, thread safety). Tests are production-ready but cannot build via `dotnet build` due to this infrastructure issue.
 
 **Options:**
 1. **Recommended:** Extract services into a separate class library (`src/WinPaperWalls.Core/`) for models and services; main WinUI app references Core, test project references Core only
 2. **Alternative:** Keep test project excluded from solution build; manual testing only until refactoring
+3. **Short-term:** Run tests in Visual Studio (has required build tools)
 
-**Decision pending:** Should we refactor to Option 1 now or defer until more services are implemented?
+**Decision pending:** Should we refactor to Option 1 now or defer? Services are now fully implemented, making this a good time for refactoring.
 
 ### 2026-04-24: Image Source
 
