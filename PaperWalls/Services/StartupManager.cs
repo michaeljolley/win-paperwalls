@@ -1,6 +1,5 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Win32;
-using System.Reflection;
 
 namespace PaperWalls.Services;
 
@@ -68,18 +67,7 @@ public sealed partial class StartupManager
 
 	private static string GetExecutablePath()
 	{
-		// Get the path to the currently executing assembly
-		var assembly = Assembly.GetExecutingAssembly();
-		var location = assembly.Location;
-
-		// For .NET applications, we need the actual .exe path
-		// Location might be .dll, so we look for the .exe
-		if (location.EndsWith(".dll", StringComparison.OrdinalIgnoreCase))
-		{
-			location = location.Substring(0, location.Length - 4) + ".exe";
-		}
-
-		return location;
+		return Environment.ProcessPath ?? Path.Combine(AppContext.BaseDirectory, "PaperWalls.exe");
 	}
 
 	// LoggerMessage source-generated methods for Native AOT compatibility
