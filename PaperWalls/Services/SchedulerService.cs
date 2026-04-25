@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace PaperWalls.Services;
 
-internal sealed class SchedulerService : ISchedulerService, IHostedService
+internal sealed partial class SchedulerService : ISchedulerService, IHostedService
 {
 	private readonly IWallpaperService _wallpaperService;
 	private readonly ISettingsService _settingsService;
@@ -30,7 +30,7 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 
 	public async Task StartAsync(CancellationToken cancellationToken)
 	{
-		_logger.LogInformation("Scheduler service starting");
+		LogSchedulerServiceStarting(_logger);
 
 		var settings = _settingsService.LoadSettings();
 		var intervalMinutes = Math.Max(1, settings.IntervalMinutes);
@@ -53,16 +53,16 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "Failed to change wallpaper on startup");
+				LogFailedToChangeWallpaperOnStartup(_logger, ex);
 			}
 		}, cancellationToken);
 
-		_logger.LogInformation("Scheduler started with interval of {IntervalMinutes} minutes", intervalMinutes);
+		LogSchedulerStarted(_logger, intervalMinutes);
 	}
 
 	public async Task StopAsync(CancellationToken cancellationToken)
 	{
-		_logger.LogInformation("Scheduler service stopping");
+		LogSchedulerServiceStopping(_logger);
 
 		lock (_timerLock)
 		{
@@ -84,7 +84,7 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "Error during scheduler shutdown");
+				LogErrorDuringSchedulerShutdown(_logger, ex);
 			}
 		}
 
@@ -92,7 +92,7 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 		_cts = null;
 		_timerTask = null;
 
-		_logger.LogInformation("Scheduler service stopped");
+		LogSchedulerServiceStopped(_logger);
 	}
 
 	private async Task RunTimerAsync(CancellationToken cancellationToken)
@@ -103,7 +103,7 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 			{
 				try
 				{
-					_logger.LogInformation("Timer tick - changing wallpaper");
+					LogTimerTick(_logger);
 					await _wallpaperService.ChangeWallpaperAsync();
 
 					// Update next change time
@@ -112,14 +112,14 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 				}
 				catch (Exception ex)
 				{
-					_logger.LogError(ex, "Error during scheduled wallpaper change");
+					LogErrorDuringScheduledWallpaperChange(_logger, ex);
 					// Continue running - don't crash the service
 				}
 			}
 		}
 		catch (OperationCanceledException)
 		{
-			_logger.LogDebug("Timer task cancelled");
+			LogTimerTaskCancelled(_logger);
 		}
 	}
 
@@ -130,7 +130,7 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 			var settings = _settingsService.LoadSettings();
 			var newIntervalMinutes = Math.Max(1, settings.IntervalMinutes);
 
-			_logger.LogInformation("Settings changed - restarting timer with interval of {IntervalMinutes} minutes", newIntervalMinutes);
+			LogSettingsChangedRestartingTimer(_logger, newIntervalMinutes);
 
 			// Stop current timer
 			lock (_timerLock)
@@ -163,11 +163,48 @@ internal sealed class SchedulerService : ISchedulerService, IHostedService
 				_timerTask = RunTimerAsync(_cts.Token);
 			}
 
-			_logger.LogInformation("Timer restarted successfully");
+			LogTimerRestartedSuccessfully(_logger);
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Error restarting timer after settings change");
+			LogErrorRestartingTimerAfterSettingsChange(_logger, ex);
 		}
 	}
+
+	// LoggerMessage source-generated methods for Native AOT compatibility
+	[LoggerMessage(EventId = 3000, Level = LogLevel.Information, Message = "Scheduler service starting")]
+	private static partial void LogSchedulerServiceStarting(ILogger logger);
+
+	[LoggerMessage(EventId = 3001, Level = LogLevel.Error, Message = "Failed to change wallpaper on startup")]
+	private static partial void LogFailedToChangeWallpaperOnStartup(ILogger logger, Exception ex);
+
+	[LoggerMessage(EventId = 3002, Level = LogLevel.Information, Message = "Scheduler started with interval of {IntervalMinutes} minutes")]
+	private static partial void LogSchedulerStarted(ILogger logger, int intervalMinutes);
+
+	[LoggerMessage(EventId = 3003, Level = LogLevel.Information, Message = "Scheduler service stopping")]
+	private static partial void LogSchedulerServiceStopping(ILogger logger);
+
+	[LoggerMessage(EventId = 3004, Level = LogLevel.Error, Message = "Error during scheduler shutdown")]
+	private static partial void LogErrorDuringSchedulerShutdown(ILogger logger, Exception ex);
+
+	[LoggerMessage(EventId = 3005, Level = LogLevel.Information, Message = "Scheduler service stopped")]
+	private static partial void LogSchedulerServiceStopped(ILogger logger);
+
+	[LoggerMessage(EventId = 3006, Level = LogLevel.Information, Message = "Timer tick - changing wallpaper")]
+	private static partial void LogTimerTick(ILogger logger);
+
+	[LoggerMessage(EventId = 3007, Level = LogLevel.Error, Message = "Error during scheduled wallpaper change")]
+	private static partial void LogErrorDuringScheduledWallpaperChange(ILogger logger, Exception ex);
+
+	[LoggerMessage(EventId = 3008, Level = LogLevel.Debug, Message = "Timer task cancelled")]
+	private static partial void LogTimerTaskCancelled(ILogger logger);
+
+	[LoggerMessage(EventId = 3009, Level = LogLevel.Information, Message = "Settings changed - restarting timer with interval of {IntervalMinutes} minutes")]
+	private static partial void LogSettingsChangedRestartingTimer(ILogger logger, int intervalMinutes);
+
+	[LoggerMessage(EventId = 3010, Level = LogLevel.Information, Message = "Timer restarted successfully")]
+	private static partial void LogTimerRestartedSuccessfully(ILogger logger);
+
+	[LoggerMessage(EventId = 3011, Level = LogLevel.Error, Message = "Error restarting timer after settings change")]
+	private static partial void LogErrorRestartingTimerAfterSettingsChange(ILogger logger, Exception ex);
 }

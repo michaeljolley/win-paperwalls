@@ -3,7 +3,7 @@ using PaperWalls.Interop;
 
 namespace PaperWalls.Services;
 
-internal sealed class WallpaperService : IWallpaperService
+internal sealed partial class WallpaperService : IWallpaperService
 {
 	private const int RecentHistorySize = 20;
 
@@ -34,7 +34,7 @@ internal sealed class WallpaperService : IWallpaperService
 	{
 		try
 		{
-			_logger.LogInformation("Starting wallpaper change");
+			LogStartingWallpaperChange(_logger);
 
 			// Get settings
 			var settings = _settingsService.LoadSettings();
@@ -43,7 +43,7 @@ internal sealed class WallpaperService : IWallpaperService
 			var topics = await _githubService.GetTopicsAsync();
 			if (topics.Count == 0)
 			{
-				_logger.LogWarning("No topics available after filtering");
+				LogNoTopicsAvailable(_logger);
 				return;
 			}
 
@@ -55,13 +55,13 @@ internal sealed class WallpaperService : IWallpaperService
 			{
 				// Pick random topic
 				var topic = topics[Random.Shared.Next(topics.Count)];
-				_logger.LogDebug("Selected topic: {Topic} (attempt {Attempt})", topic, attempt + 1);
+				LogSelectedTopic(_logger, topic, attempt + 1);
 
 				// Get images in topic
 				var images = await _githubService.GetImagesAsync(topic);
 				if (images.Count == 0)
 				{
-					_logger.LogWarning("No images found in topic {Topic}", topic);
+					LogNoImagesFoundInTopic(_logger, topic);
 					continue;
 				}
 
@@ -72,7 +72,7 @@ internal sealed class WallpaperService : IWallpaperService
 
 				if (availableImages.Count == 0)
 				{
-					_logger.LogDebug("All images in topic {Topic} were recently used", topic);
+					LogAllImagesRecentlyUsed(_logger, topic);
 
 					// If we've tried many times, just use any image from this topic
 					if (attempt >= 5)
@@ -87,8 +87,7 @@ internal sealed class WallpaperService : IWallpaperService
 
 				// Pick random image
 				var selectedImage = availableImages[Random.Shared.Next(availableImages.Count)];
-				_logger.LogInformation("Selected image: {FileName} from topic {Topic}",
-					selectedImage.FileName, selectedImage.Topic);
+				LogSelectedImage(_logger, selectedImage.FileName, selectedImage.Topic);
 
 				// Download/get from cache
 				try
@@ -103,8 +102,7 @@ internal sealed class WallpaperService : IWallpaperService
 
 					if (cacheSize > maxCacheBytes)
 					{
-						_logger.LogInformation("Cache size ({CurrentMB} MB) exceeds limit ({MaxMB} MB), evicting oldest files",
-							cacheSize / 1024 / 1024, settings.CacheMaxMB);
+						LogCacheSizeExceedsLimit(_logger, cacheSize / 1024 / 1024, settings.CacheMaxMB);
 
 						await _cacheService.EvictOldestAsync(maxCacheBytes);
 					}
@@ -114,7 +112,7 @@ internal sealed class WallpaperService : IWallpaperService
 				}
 				catch (Exception ex)
 				{
-					_logger.LogError(ex, "Failed to download image {FileName}", selectedImage.FileName);
+					LogFailedToDownloadImage(_logger, ex, selectedImage.FileName);
 					imagePath = null;
 					continue;
 				}
@@ -122,24 +120,24 @@ internal sealed class WallpaperService : IWallpaperService
 
 			if (imagePath == null)
 			{
-				_logger.LogError("Failed to find and download a suitable wallpaper after {Attempts} attempts", maxAttempts);
+				LogFailedToFindSuitableWallpaper(_logger, maxAttempts);
 				return;
 			}
 
 			// Parse wallpaper style
 			if (!Enum.TryParse<WallpaperStyle>(settings.WallpaperStyle, true, out var style))
 			{
-				_logger.LogWarning("Invalid wallpaper style {Style}, using Fill", settings.WallpaperStyle);
+				LogInvalidWallpaperStyle(_logger, settings.WallpaperStyle);
 				style = WallpaperStyle.Fill;
 			}
 
 			// Set wallpaper
 			_desktopWallpaperService.SetWallpaper(imagePath, style);
-			_logger.LogInformation("Successfully changed wallpaper to {Path} with style {Style}", imagePath, style);
+			LogSuccessfullyChangedWallpaper(_logger, imagePath, style);
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Failed to change wallpaper");
+			LogFailedToChangeWallpaper(_logger, ex);
 			throw;
 		}
 	}
@@ -169,4 +167,41 @@ internal sealed class WallpaperService : IWallpaperService
 			}
 		}
 	}
+
+	// LoggerMessage source-generated methods for Native AOT compatibility
+	[LoggerMessage(EventId = 4000, Level = LogLevel.Information, Message = "Starting wallpaper change")]
+	private static partial void LogStartingWallpaperChange(ILogger logger);
+
+	[LoggerMessage(EventId = 4001, Level = LogLevel.Warning, Message = "No topics available after filtering")]
+	private static partial void LogNoTopicsAvailable(ILogger logger);
+
+	[LoggerMessage(EventId = 4002, Level = LogLevel.Debug, Message = "Selected topic: {Topic} (attempt {Attempt})")]
+	private static partial void LogSelectedTopic(ILogger logger, string topic, int attempt);
+
+	[LoggerMessage(EventId = 4003, Level = LogLevel.Warning, Message = "No images found in topic {Topic}")]
+	private static partial void LogNoImagesFoundInTopic(ILogger logger, string topic);
+
+	[LoggerMessage(EventId = 4004, Level = LogLevel.Debug, Message = "All images in topic {Topic} were recently used")]
+	private static partial void LogAllImagesRecentlyUsed(ILogger logger, string topic);
+
+	[LoggerMessage(EventId = 4005, Level = LogLevel.Information, Message = "Selected image: {FileName} from topic {Topic}")]
+	private static partial void LogSelectedImage(ILogger logger, string fileName, string topic);
+
+	[LoggerMessage(EventId = 4006, Level = LogLevel.Information, Message = "Cache size ({CurrentMB} MB) exceeds limit ({MaxMB} MB), evicting oldest files")]
+	private static partial void LogCacheSizeExceedsLimit(ILogger logger, long currentMB, int maxMB);
+
+	[LoggerMessage(EventId = 4007, Level = LogLevel.Error, Message = "Failed to download image {FileName}")]
+	private static partial void LogFailedToDownloadImage(ILogger logger, Exception ex, string fileName);
+
+	[LoggerMessage(EventId = 4008, Level = LogLevel.Error, Message = "Failed to find and download a suitable wallpaper after {Attempts} attempts")]
+	private static partial void LogFailedToFindSuitableWallpaper(ILogger logger, int attempts);
+
+	[LoggerMessage(EventId = 4009, Level = LogLevel.Warning, Message = "Invalid wallpaper style {Style}, using Fill")]
+	private static partial void LogInvalidWallpaperStyle(ILogger logger, string style);
+
+	[LoggerMessage(EventId = 4010, Level = LogLevel.Information, Message = "Successfully changed wallpaper to {Path} with style {Style}")]
+	private static partial void LogSuccessfullyChangedWallpaper(ILogger logger, string path, WallpaperStyle style);
+
+	[LoggerMessage(EventId = 4011, Level = LogLevel.Error, Message = "Failed to change wallpaper")]
+	private static partial void LogFailedToChangeWallpaper(ILogger logger, Exception ex);
 }

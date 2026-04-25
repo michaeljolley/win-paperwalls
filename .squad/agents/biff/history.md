@@ -313,3 +313,41 @@ Any code that touches external state (file system, registry, OS APIs) should be 
 - No behavioral changes to application
 
 **Impact:** Code is now more maintainable with cleaner imports and no dead code references.
+
+### 2026-07-14: Native AOT - LoggerMessage Source Generator Conversion
+
+**Conversion for Native AOT Compatibility:**
+- Converted all `_logger.LogX(...)` calls to use `[LoggerMessage]` source-generated attributes
+- Required for Native AOT (`PublishAot` enabled in csproj) - reflection-free logging
+
+**Files Converted (7):**
+1. `PaperWalls/Services/CacheService.cs` - Event IDs 1000-1013
+2. `PaperWalls/Services/GitHubImageService.cs` - Event IDs 2000-2014
+3. `PaperWalls/Services/SchedulerService.cs` - Event IDs 3000-3011
+4. `PaperWalls/Services/WallpaperService.cs` - Event IDs 4000-4011
+5. `PaperWalls/Services/StartupManager.cs` - Event IDs 5000-5004
+6. `PaperWalls/Services/LogBundleService.cs` - Event IDs 6000-6003
+7. `PaperWalls/ViewModels/SettingsViewModel.cs` - Event IDs 7000
+
+**Pattern Applied:**
+- Made all classes `partial` (required for source generators)
+- Created static partial methods with `[LoggerMessage]` attributes
+- Method signature: `private static partial void MethodName(ILogger logger, params...);`
+- For exceptions: `Exception` parameter comes after `ILogger`
+- Call site: `MethodName(_logger, args...);`
+
+**Event ID Ranges:**
+- 1000-1099: CacheService
+- 2000-2099: GitHubImageService
+- 3000-3099: SchedulerService
+- 4000-4099: WallpaperService
+- 5000-5099: StartupManager
+- 6000-6099: LogBundleService
+- 7000-7099: SettingsViewModel
+
+**Verification:**
+- Build: ✅ Clean (`dotnet build PaperWalls.slnx`)
+- Tests: ✅ All 48 tests pass (`dotnet test PaperWalls.slnx`)
+- Native AOT compatibility: ✅ Source generators eliminate reflection
+
+**Impact:** Project is now fully compatible with Native AOT compilation. LoggerMessage source generators provide zero-allocation logging at runtime with compile-time validation.

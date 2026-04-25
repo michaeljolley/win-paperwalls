@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace PaperWalls.Services;
 
-public sealed class StartupManager
+public sealed partial class StartupManager
 {
 	private const string RegistryKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Run";
 	private const string AppName = "PaperWalls";
@@ -23,7 +23,7 @@ public sealed class StartupManager
 			using var key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath, writable: true);
 			if (key == null)
 			{
-				_logger.LogError("Failed to open registry key for startup configuration");
+				LogFailedToOpenRegistryKey(_logger);
 				throw new InvalidOperationException("Cannot access Windows startup registry key");
 			}
 
@@ -31,17 +31,17 @@ public sealed class StartupManager
 			{
 				var exePath = GetExecutablePath();
 				key.SetValue(AppName, $"\"{exePath}\"");
-				_logger.LogInformation("Added application to Windows startup: {ExePath}", exePath);
+				LogAddedToWindowsStartup(_logger, exePath);
 			}
 			else
 			{
 				key.DeleteValue(AppName, throwOnMissingValue: false);
-				_logger.LogInformation("Removed application from Windows startup");
+				LogRemovedFromWindowsStartup(_logger);
 			}
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Failed to configure Windows startup");
+			LogFailedToConfigureWindowsStartup(_logger, ex);
 			throw;
 		}
 	}
@@ -61,7 +61,7 @@ public sealed class StartupManager
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Failed to check Windows startup status");
+			LogFailedToCheckWindowsStartupStatus(_logger, ex);
 			return false;
 		}
 	}
@@ -81,4 +81,20 @@ public sealed class StartupManager
 
 		return location;
 	}
+
+	// LoggerMessage source-generated methods for Native AOT compatibility
+	[LoggerMessage(EventId = 5000, Level = LogLevel.Error, Message = "Failed to open registry key for startup configuration")]
+	private static partial void LogFailedToOpenRegistryKey(ILogger logger);
+
+	[LoggerMessage(EventId = 5001, Level = LogLevel.Information, Message = "Added application to Windows startup: {ExePath}")]
+	private static partial void LogAddedToWindowsStartup(ILogger logger, string exePath);
+
+	[LoggerMessage(EventId = 5002, Level = LogLevel.Information, Message = "Removed application from Windows startup")]
+	private static partial void LogRemovedFromWindowsStartup(ILogger logger);
+
+	[LoggerMessage(EventId = 5003, Level = LogLevel.Error, Message = "Failed to configure Windows startup")]
+	private static partial void LogFailedToConfigureWindowsStartup(ILogger logger, Exception ex);
+
+	[LoggerMessage(EventId = 5004, Level = LogLevel.Error, Message = "Failed to check Windows startup status")]
+	private static partial void LogFailedToCheckWindowsStartupStatus(ILogger logger, Exception ex);
 }
