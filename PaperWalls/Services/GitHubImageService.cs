@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Logging;
 using PaperWalls.Models;
+using PaperWalls.Serialization;
 using System.Net.Http.Json;
-using System.Text.Json.Serialization;
 
 namespace PaperWalls.Services;
 
@@ -52,7 +52,7 @@ internal sealed partial class GitHubImageService : IGitHubImageService
 
 			response.EnsureSuccessStatusCode();
 
-			var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>().ConfigureAwait(false);
+			var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem).ConfigureAwait(false);
 			if (items == null)
 			{
 				LogGitHubApiReturnedNull();
@@ -119,7 +119,7 @@ internal sealed partial class GitHubImageService : IGitHubImageService
 
 			response.EnsureSuccessStatusCode();
 
-			var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>().ConfigureAwait(false);
+			var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem).ConfigureAwait(false);
 			if (items == null)
 			{
 				LogGitHubApiReturnedNullForTopic(topic);
@@ -241,19 +241,4 @@ internal sealed partial class GitHubImageService : IGitHubImageService
 
 	[LoggerMessage(EventId = 2014, Level = LogLevel.Error, Message = "GitHub API rate limit exceeded. Resets at {ResetTime}")]
 	partial void LogGitHubApiRateLimitExceeded(DateTimeOffset resetTime);
-
-	private class GitHubContentItem
-	{
-		[JsonPropertyName("name")]
-		public string Name { get; set; } = string.Empty;
-
-		[JsonPropertyName("type")]
-		public string Type { get; set; } = string.Empty;
-
-		[JsonPropertyName("path")]
-		public string Path { get; set; } = string.Empty;
-
-		[JsonPropertyName("download_url")]
-		public string? DownloadUrl { get; set; }
-	}
 }

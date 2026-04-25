@@ -4,6 +4,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Extensions.Logging;
 using PaperWalls.Interop;
+using PaperWalls.Models;
+using PaperWalls.Serialization;
 using PaperWalls.Services;
 
 namespace PaperWalls.ViewModels;
@@ -165,7 +167,7 @@ public sealed partial class SettingsViewModel : ObservableObject
 		var response = await httpClient.GetAsync("https://api.github.com/repos/burkeholland/paper/contents/wallpapers");
 		response.EnsureSuccessStatusCode();
 
-		var items = await response.Content.ReadFromJsonAsync<List<GitHubContentItem>>();
+		var items = await response.Content.ReadFromJsonAsync(AppJsonContext.Default.ListGitHubContentItem);
 		return items?
 			.Where(i => i.Type == "dir")
 			.Select(i => i.Name)
@@ -292,12 +294,6 @@ public sealed partial class SettingsViewModel : ObservableObject
 	// LoggerMessage source-generated methods for Native AOT compatibility
 	[LoggerMessage(EventId = 7000, Level = LogLevel.Error, Message = "Failed to load topics from GitHub")]
 	partial void LogFailedToLoadTopics(Exception ex);
-
-	private sealed class GitHubContentItem
-	{
-		public string Name { get; set; } = string.Empty;
-		public string Type { get; set; } = string.Empty;
-	}
 }
 
 public sealed partial class TopicItemViewModel : ObservableObject
