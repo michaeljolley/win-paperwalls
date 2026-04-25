@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="src/PaperWalls/Assets/logo.png" alt="PaperWalls" width="128" />
+  <img src="PaperWalls/Assets/logo.png" alt="PaperWalls" width="128" />
 </p>
 
 # PaperWalls
