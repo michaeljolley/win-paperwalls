@@ -351,3 +351,17 @@ Any code that touches external state (file system, registry, OS APIs) should be 
 - Native AOT compatibility: ✅ Source generators eliminate reflection
 
 **Impact:** Project is now fully compatible with Native AOT compilation. LoggerMessage source generators provide zero-allocation logging at runtime with compile-time validation.
+
+### 2026-07-14: Release Workflow MSIX Fix
+
+**Problem:** All 4 `dotnet publish` commands in `.github/workflows/release.yml` were missing `/p:GenerateAppxPackageOnBuild=true`, so they only produced DLLs instead of MSIX packages. The publish profiles had the right settings but CLI `dotnet publish` doesn't auto-apply them.
+
+**Changes:**
+1. Added `/p:GenerateAppxPackageOnBuild=true` to all 4 publish commands (2 sideload + 2 Store)
+2. Added `/p:AppxPackageDir=` with platform-separated output dirs:
+   - Sideload: `AppPackages/x64/`, `AppPackages/arm64/`
+   - Store: `AppPackages-Store/x64/`, `AppPackages-Store/arm64/`
+3. Updated all MSIX discovery paths (upload artifacts, release upload, Store collect, cleanup)
+4. Changed build-and-test job from `-r win-x64` (RuntimeIdentifier) to `/p:Platform=x64` for consistency with package job's MSIX build approach
+
+**Key Learning:** `dotnet publish` from CLI ignores publish profiles even when `<PublishProfile>` is set in csproj. Must pass MSIX-related properties explicitly via `/p:` flags. Also, `AppxBundle=Never` in csproj means output is individual `.msix` files, not `.msixbundle`.
